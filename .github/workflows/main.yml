@@ -9,11 +9,11 @@ on:
       - main
 
 jobs:
-  test:
+  Selenium_Test_Automation:
+    name: Selenium Test Automation
     runs-on: windows-latest
 
     steps:
-      # Bước 1: Checkout mã nguồn
       - name: Checkout code
         uses: actions/checkout@v3
 
