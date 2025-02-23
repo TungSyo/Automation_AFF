@@ -9,15 +9,15 @@
       </run>
     </groups>
     <classes>
-      <class name="User.Register.User_Register_Test">
+      <class name="User.Login.User_Login_Test">
         <methods>
           <include name="tearDown"/>
           <include name="beforeSuite"/>
-          <include name="registerTest"/>
           <include name="afterSuite"/>
           <include name="setUp"/>
+          <include name="testLogin" invocation-numbers="4 5 9"/>
         </methods>
-      </class> <!-- User.Register.User_Register_Test -->
+      </class> <!-- User.Login.User_Login_Test -->
     </classes>
   </test> <!-- Tests(failed) -->
 </suite> <!-- Failed suite [Parallel Test Suite] -->

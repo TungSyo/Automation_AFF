@@ -34,6 +34,7 @@ public class Driver_Manager {
 
                // chromeOptions.addArguments("--headless=new");
                 chromeOptions.addArguments("--disable-extenstions");
+                chromeOptions.addArguments("--disable-build-check");
                 chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--disable-dev-shm-usage");

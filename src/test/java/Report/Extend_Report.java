@@ -47,21 +47,36 @@ public class Extend_Report {
         if (extent == null) {
             startReport();
         }
-        ExtentTest test = extent.createTest(testName).assignCategory(category);
-        threadLocalTest.set(test);
+        ExtentTest cate = extent.createTest(testName).assignCategory(category).assignAuthor("Đỗ_Đắc_Tùng");
+   
+        threadLocalTest.set(cate);
         System.out.println("Bắt đầu test: " + testName + " - Category: " + category);
     }
 
     public static void addCategory(String category) {
-        ExtentTest test = threadLocalTest.get();
-        if (test != null) {
-            test.assignCategory(category);
+        ExtentTest cate = threadLocalTest.get();
+        if (cate != null) {
+            cate.assignCategory(category);
             System.out.println("Đã thêm category: " + category);
         } else {
             System.err.println("Test chưa được khởi tạo. Gọi startTest() trước khi thêm category.");
         }
     }
-
+    public static void addDevice(String deviceName) {
+        ExtentTest test = threadLocalTest.get();
+        if (test != null) {
+            test.assignCategory(deviceName);
+            System.out.println("Đã thêm thiết bị: " + deviceName);
+        }
+    }
+    
+    public static void addAuthor(String authorName) {
+        ExtentTest test = threadLocalTest.get();
+        if (test != null) {
+            test.assignAuthor(authorName);
+            System.out.println("Đã thêm tác giả: " + authorName);
+        }
+    }
     private static void log(Status status, String message) {
         ExtentTest test = threadLocalTest.get();
         if (test != null) {
