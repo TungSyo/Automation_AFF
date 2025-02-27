@@ -18,7 +18,7 @@ public class User_Register_Test extends Base_Test {
     public Object[][] getRegisterData() throws IOException, InvalidFormatException {
         Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", "Register");
         int rowCount = excel.getRowCount();
-        Object[][] data = new Object[rowCount - 1][19];
+        Object[][] data = new Object[rowCount - 1][20];
 
         for (int i = 1; i < rowCount; i++) {
             data[i - 1][0] = excel.getCellData(i, "Name");
@@ -40,6 +40,7 @@ public class User_Register_Test extends Base_Test {
             data[i - 1][16] = excel.getCellData(i, "Link");
             data[i - 1][17] = excel.getCellData(i, "Description");
             data[i - 1][18] = excel.getCellData(i, "TestType");
+            data[i - 1][19] = excel.getCellData(i, "Pop3");
         }
         return data;
     }
@@ -47,10 +48,12 @@ public class User_Register_Test extends Base_Test {
     @Test(dataProvider = "registerData", groups = { "Success", "Fail" })
     public void registerTest(String name, String sdt, String email, String cmnd, String pass, String mgt, String city,
             String district, String ward, String location, String mst, String date, String bank, String stk,
-            String result, String title, String link, String description, String testType) throws Exception {
+            String result, String title, String link, String description, String testType, String pop3) throws Exception {
 
         String category = testType.equalsIgnoreCase("Fail") ? "Register_Data_Fail" : "Register_Data_Pass";
+
         Extend_Report.startTest("Register Test - " + description, category);
+
         User_Register_Action registerActions = new User_Register_Action(Driver_Manager.getDriver());
 
         try {
@@ -72,9 +75,9 @@ public class User_Register_Test extends Base_Test {
                         break;
 
                     case "action":
-                        registerActions.register(name, sdt, email, cmnd, pass, mgt, city, district, ward, location, mst,
-                                date, bank, stk, result);
                         Extend_Report.logInfo("Thực hiện test case: " + description);
+                        registerActions.register(name, sdt, email, cmnd, pass, mgt, city, district, ward, location, mst,
+                                date, bank, stk, result, pop3);
                         break;
 
                     case "verifynotion":

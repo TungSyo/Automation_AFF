@@ -13,7 +13,6 @@ User\SCart\SCart_Action.class
 Admin\Product\ProductAction.class
 User\SCart\SCart_Page.class
 Utils\ScreenShotUtil.class
-Utils\Email_Reader.class
 Utils\Excel_Util$1.class
 Admin\Category\CategoryPage.class
 User\Register\User_Register_Page.class
@@ -42,5 +41,4 @@ Driver\Browser_Type.class
 Admin\Brand\BrandTestDel.class
 Admin\Tree\TreeAction.class
 Admin\AccountManager\AccountTestUp.class
-Utils\Otp_Extractor.class
 Admin\CreatOrder\OrderAction.class

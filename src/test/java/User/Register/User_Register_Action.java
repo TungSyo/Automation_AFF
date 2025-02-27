@@ -171,7 +171,7 @@ public class User_Register_Action {
 
     public void register(String name, String sdt, String email, String cmnd, String pass, String mgt,
             String city, String district, String ward, String location, String mst,
-            String date, String bank, String stk, String result) {
+            String date, String bank, String stk, String result, String pop3) {
         clickAccount();
         clickRegister();
         baseTest.sleep(1000);
@@ -193,64 +193,34 @@ public class User_Register_Action {
 
         clickCheckox();
         clickTaotk();
-
         if (shouldLoginGoogle) {
-            // String host = ConfigUtil.getProperty("pop3.host");
-            // String username = email;
-            // String password = ConfigUtil.getProperty("pop3.pass");
-            String host = "mail.pop3.host"; // Đảm bảo host đúng
+            baseTest.sleep(3000);
+        
+            String host = "pop.gmail.com";  
             String username = email;
-            String password = "s2kutebaby"; // Mật khẩu email
-
-            // Thử kết nối trực tiếp thay vì từ file cấu hình
-
+            String password = pop3;
+            System.err.println("Email: " + email + ", POP3 password: " + pop3);
+        
             try {
                 System.out.println("📨 Đang kiểm tra hộp thư...");
-                String emailContent = Email_Reader.readLatestEmail(host, username, password);
-
-                if (emailContent != null) {
-                    String otp = Otp_Extractor.extractOtpFromEmail(emailContent);
-                    if (otp != null && !otp.isEmpty()) {
-                        System.out.println("✅ OTP tìm thấy: " + otp);
-                        enterOTP(otp);
-                        clickXacnhan();
-                    } else {
-                        System.err.println("⚠️ Không lấy được OTP!");
-                    }
+                
+                // Lấy OTP trực tiếp từ hàm readLatestEmail
+                String otp = Email_Reader.readLatestEmail(host, username, password); // Hàm này sẽ trả về OTP
+        
+                if (otp != null && !otp.isEmpty()) {
+                    System.out.println("✅ OTP tìm thấy: " + otp);
+                    enterOTP(otp);  // Nhập OTP vào trường xác nhận
+                    clickXacnhan(); // Nhấn xác nhận
                 } else {
-                    System.err.println("⚠️ Không có email nào trong hộp thư.");
+                    System.err.println("⚠️ Không lấy được OTP!");
                 }
+        
             } catch (Exception e) {
                 System.err.println("❌ Lỗi khi đọc email qua POP: " + e.getMessage());
             }
         }
-
-        // Sử dụng Profile để đăng nhập vào google và lấy OTP
-        // if (shouldLoginGoogle) {
-        // loginGoogle.openNewTabAndAccessGoogle();
-        // loginGoogle.loginGoogle(email);
-
-        // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        // try {
-        // wait.until(ExpectedConditions
-        // .presenceOfElementLocated(By.xpath("//div[@class='T-I T-I-KE
-        // L3'][contains(.,'Soạn thư')]")));
-        // System.out.println("Login thành công!");
-        // } catch (TimeoutException e) {
-        // System.out.println("Login không thành công!");
-        // }
-        // String otp = loginGoogle.checkEmailAndGetOTP();
-        // if (otp == null) {
-        // System.out.println("⚠️ Không lấy được OTP!");
-        // return;
-        // }
-        // loginGoogle.deleteMail();
-        // loginGoogle.switchBackToOriginalTab();
-
-        // enterOTP(otp);
-        // clickXacnhan();
-        // }
-
+        
+        
     }
 
     public boolean verifyNotion(String result) {

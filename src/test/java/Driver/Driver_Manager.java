@@ -32,7 +32,7 @@ public class Driver_Manager {
 
                 chromeOptions.setBinary("D:\\Tài xuống\\GoogleChromePortable\\App\\Chrome-bin\\chrome.exe");
 
-               // chromeOptions.addArguments("--headless=new");
+                chromeOptions.addArguments("--headless=new");
                 chromeOptions.addArguments("--disable-extenstions");
                 chromeOptions.addArguments("--disable-build-check");
                 chromeOptions.addArguments("--disable-gpu");

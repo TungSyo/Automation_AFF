@@ -8,8 +8,8 @@
             </run>
         </groups>
         <classes>
-           <!-- <class name="User.Register.User_Register_Test"/> -->
-            <class name="User.Login.User_Login_Test"/>
+           <class name="User.Register.User_Register_Test"/>
+            <!-- <class name="User.Login.User_Login_Test"/> -->
         </classes>
     </test>
 </suite>

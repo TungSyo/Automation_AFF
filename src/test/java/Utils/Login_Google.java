@@ -79,7 +79,7 @@ public class Login_Google {
                 System.out.println("✅ Email đã tồn tại trên màn hình.");
             }
         } catch (Exception e) {
-            System.err.println("Lỗi khi kiểm tra email: " + e.getMessage());
+            System.err.println("Lỗi khi kiểm tra emaijl: " + e.getMessage());
         }
     }
 
@@ -91,24 +91,6 @@ public class Login_Google {
             System.err.println("Lỗi khi chuyển về tab ban đầu: " + e.getMessage());
         }
     }
-
-    // Bỏ không dùng được vì bảo mật của chrome không cho phép tự động đăng nhập
-    // google bằng selenium
-    // public void loginGoogle(String email, String passGoogle) {
-    // try {
-    // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-    // wait.until(ExpectedConditions.elementToBeClickable(basePage.txtEmailGG)).sendKeys(email);
-    // Base_Test.sleep(1500);
-    // wait.until(ExpectedConditions.elementToBeClickable(basePage.txtEmailGG)).sendKeys(Keys.ENTER);
-    // System.out.println("Đã nhập email: " + email);
-    // wait.until(ExpectedConditions.elementToBeClickable(basePage.txtPassGG)).sendKeys(passGoogle);
-    // Base_Test.sleep(1500);
-    // wait.until(ExpectedConditions.elementToBeClickable(basePage.txtPassGG)).sendKeys(Keys.ENTER);
-    // System.out.println("Đã nhập mật khẩu: " + passGoogle);
-    // } catch (Exception e) {
-    // System.err.println("Lỗi khi đăng nhập Google: " + e.getMessage());
-    // }
-    // }
 
     public void loginGoogle(String email) {
         try {
@@ -134,32 +116,7 @@ public class Login_Google {
     }
 
     
-    public String checkEmailAndGetOTP() {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Chờ tối đa 10 giây
-            List<WebElement> elements = driver.findElements(
-                By.xpath("//*[contains(text(), 'Your verification code') and contains(text(), 'AFF-HONIVY is')]")
-            );
-    
-            if (!elements.isEmpty()) {
-                WebElement otpElement = elements.get(0);
-    
-                String message = otpElement.getText().trim();
-                System.out.println("✅ Raw Message found: [" + message + "]");
-    
-                // Lấy các ký tự bên phải chữ "is" và lọc ra chỉ lấy số
-                String otpPart = message.substring(message.indexOf("is") + 2).trim(); // Lấy phần sau "is"
-                System.out.println("📝 Phần sau 'is': [" + otpPart + "]");
-    
-                String otp = otpPart.replaceAll("[^0-9]", ""); // Loại bỏ tất cả ký tự không phải số
-                System.out.println("🔢 OTP extracted: [" + otp + "]");
-    
-                return otp; 
-            } else {
-                System.out.println("⏳ Không tìm thấy OTP.");
-                return null;
-            }
-        }
-           
+   
         
     public String deleteMail() {
         WebElement firstElement = driver.findElement(By.xpath("(//tr[@class='zA zE'])[1]"));
