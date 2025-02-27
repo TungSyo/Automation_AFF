@@ -11,7 +11,6 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 import Driver.Browser_Type;
 import Driver.Driver_Manager;
-import Driver.Driver_Manager_Profile;
 import Utils.ConfigUtil;
 import Utils.ScreenShotUtil;
 import Report.Extend_Report;
@@ -47,13 +46,8 @@ public class Base_Test {
         // Đảm bảo gọi Driver_Manager.initDriver() trước khi sử dụng getDriver().
         Driver_Manager.initDriver(browser);
 
-    
-
-        Driver_Manager.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
-        Driver_Manager.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-
-        System.out.println("✅ Page Load Timeout: " + 20 + " giây");
-        System.out.println("✅ Implicit Wait: " + 15 + " giây");
+        Driver_Manager.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+        Driver_Manager.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
 
@@ -74,11 +68,10 @@ public class Base_Test {
     }
 
     protected void handleTestException(Exception e, String description) throws IOException {
-        String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(), "testLogin_Exception",
-                "LoginTest");
-        Extend_Report.attachScreenshot(screenshotPath);
+        // String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(), "testLogin_Exception", "LoginTest");
+        // Extend_Report.attachScreenshot(screenshotPath);
         Extend_Report.logFail("Kiểm tra đăng nhập thất bại cho: " + description + " với lỗi: " + e.getMessage());
-        System.out.println("Ảnh chụp màn hình đã được lưu tại: " + screenshotPath);
+        // System.out.println("Ảnh chụp màn hình đã được lưu tại: " + screenshotPath);
     }
 
     @AfterMethod(alwaysRun = true)

@@ -132,6 +132,8 @@ public class Login_Google {
             System.err.println("Lỗi khi xử lý đăng nhập Google: " + e.getMessage());
         }
     }
+
+    
     public String checkEmailAndGetOTP() {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Chờ tối đa 10 giây
             List<WebElement> elements = driver.findElements(

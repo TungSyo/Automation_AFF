@@ -2,7 +2,7 @@
 <testng-results ignored="0" total="12" passed="12" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-02-23T08:54:55 ICT" name="Parallel Test Suite" finished-at="2025-02-23T08:55:40 ICT" duration-ms="44961">
+  <suite started-at="2025-02-27T09:27:51 ICT" name="Parallel Test Suite" finished-at="2025-02-27T09:28:50 ICT" duration-ms="58708">
     <groups>
       <group name="Success">
         <method signature="User_Login_Test.testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" name="testLogin" class="User.Login.User_Login_Test"/>
@@ -11,17 +11,17 @@
         <method signature="User_Login_Test.testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" name="testLogin" class="User.Login.User_Login_Test"/>
       </group> <!-- Fail -->
     </groups>
-    <test started-at="2025-02-23T08:54:55 ICT" name="Tests" finished-at="2025-02-23T08:55:40 ICT" duration-ms="44961">
+    <test started-at="2025-02-27T09:27:51 ICT" name="Tests" finished-at="2025-02-27T09:28:50 ICT" duration-ms="58708">
       <class name="User.Login.User_Login_Test">
-        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:54:55 ICT" name="beforeSuite" finished-at="2025-02-23T08:54:55 ICT" duration-ms="155" status="PASS">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:27:51 ICT" name="beforeSuite" finished-at="2025-02-27T09:27:51 ICT" duration-ms="190" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:54:56 ICT" name="setUp" finished-at="2025-02-23T08:54:57 ICT" duration-ms="1075" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:27:52 ICT" name="setUp" finished-at="2025-02-27T09:27:55 ICT" duration-ms="2771" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:54:57 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-23T08:55:00 ICT" duration-ms="2838" status="PASS">
+        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:27:55 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-27T09:28:03 ICT" duration-ms="7555" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -62,15 +62,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:00 ICT" name="tearDown" finished-at="2025-02-23T08:55:00 ICT" duration-ms="455" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:03 ICT" name="tearDown" finished-at="2025-02-27T09:28:03 ICT" duration-ms="388" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:00 ICT" name="setUp" finished-at="2025-02-23T08:55:01 ICT" duration-ms="698" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:03 ICT" name="setUp" finished-at="2025-02-27T09:28:04 ICT" duration-ms="778" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:01 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-23T08:55:03 ICT" duration-ms="2518" status="PASS">
+        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:04 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-27T09:28:07 ICT" duration-ms="2707" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -111,15 +111,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:03 ICT" name="tearDown" finished-at="2025-02-23T08:55:04 ICT" duration-ms="301" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:07 ICT" name="tearDown" finished-at="2025-02-27T09:28:07 ICT" duration-ms="323" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:04 ICT" name="setUp" finished-at="2025-02-23T08:55:04 ICT" duration-ms="657" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:07 ICT" name="setUp" finished-at="2025-02-27T09:28:08 ICT" duration-ms="765" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:04 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-23T08:55:07 ICT" duration-ms="2806" status="PASS">
+        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:08 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-27T09:28:10 ICT" duration-ms="2679" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -160,15 +160,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:07 ICT" name="tearDown" finished-at="2025-02-23T08:55:07 ICT" duration-ms="325" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:10 ICT" name="tearDown" finished-at="2025-02-27T09:28:11 ICT" duration-ms="330" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:07 ICT" name="setUp" finished-at="2025-02-23T08:55:08 ICT" duration-ms="639" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:11 ICT" name="setUp" finished-at="2025-02-27T09:28:12 ICT" duration-ms="728" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:08 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-23T08:55:11 ICT" duration-ms="2573" status="PASS">
+        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:12 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-27T09:28:14 ICT" duration-ms="2668" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -209,19 +209,19 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:11 ICT" name="tearDown" finished-at="2025-02-23T08:55:11 ICT" duration-ms="337" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:14 ICT" name="tearDown" finished-at="2025-02-27T09:28:15 ICT" duration-ms="316" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:11 ICT" name="setUp" finished-at="2025-02-23T08:55:12 ICT" duration-ms="790" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:15 ICT" name="setUp" finished-at="2025-02-27T09:28:15 ICT" duration-ms="739" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:12 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-23T08:55:14 ICT" duration-ms="2557" status="PASS">
+        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:15 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-27T09:28:18 ICT" duration-ms="2707" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[adminmaste   r@gmail.com]]>
+                <![CDATA[adminmaste r@gmail.com]]>
               </value>
             </param>
             <param index="1">
@@ -258,15 +258,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:14 ICT" name="tearDown" finished-at="2025-02-23T08:55:15 ICT" duration-ms="315" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:18 ICT" name="tearDown" finished-at="2025-02-27T09:28:18 ICT" duration-ms="377" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:15 ICT" name="setUp" finished-at="2025-02-23T08:55:15 ICT" duration-ms="649" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:18 ICT" name="setUp" finished-at="2025-02-27T09:28:19 ICT" duration-ms="763" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:15 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-23T08:55:18 ICT" duration-ms="2580" status="PASS">
+        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:19 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-27T09:28:22 ICT" duration-ms="2729" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -307,15 +307,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:18 ICT" name="tearDown" finished-at="2025-02-23T08:55:18 ICT" duration-ms="340" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:22 ICT" name="tearDown" finished-at="2025-02-27T09:28:22 ICT" duration-ms="336" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:18 ICT" name="setUp" finished-at="2025-02-23T08:55:19 ICT" duration-ms="767" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:22 ICT" name="setUp" finished-at="2025-02-27T09:28:23 ICT" duration-ms="843" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:19 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-23T08:55:21 ICT" duration-ms="2529" status="PASS">
+        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:23 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-27T09:28:26 ICT" duration-ms="2860" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -356,15 +356,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:21 ICT" name="tearDown" finished-at="2025-02-23T08:55:22 ICT" duration-ms="267" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:26 ICT" name="tearDown" finished-at="2025-02-27T09:28:26 ICT" duration-ms="352" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:22 ICT" name="setUp" finished-at="2025-02-23T08:55:22 ICT" duration-ms="671" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:26 ICT" name="setUp" finished-at="2025-02-27T09:28:27 ICT" duration-ms="835" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:22 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-23T08:55:25 ICT" duration-ms="2498" status="PASS">
+        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:27 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-27T09:28:30 ICT" duration-ms="2820" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -405,19 +405,19 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:25 ICT" name="tearDown" finished-at="2025-02-23T08:55:25 ICT" duration-ms="293" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:30 ICT" name="tearDown" finished-at="2025-02-27T09:28:30 ICT" duration-ms="344" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:25 ICT" name="setUp" finished-at="2025-02-23T08:55:26 ICT" duration-ms="650" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:30 ICT" name="setUp" finished-at="2025-02-27T09:28:32 ICT" duration-ms="1536" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:26 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-23T08:55:28 ICT" duration-ms="2522" status="PASS">
+        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:32 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-27T09:28:35 ICT" duration-ms="2817" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Tungtet2003@gmail.com]]>
+                <![CDATA[tungtet2003@gmail.com]]>
               </value>
             </param>
             <param index="1">
@@ -454,15 +454,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:28 ICT" name="tearDown" finished-at="2025-02-23T08:55:29 ICT" duration-ms="319" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:35 ICT" name="tearDown" finished-at="2025-02-27T09:28:35 ICT" duration-ms="495" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:29 ICT" name="setUp" finished-at="2025-02-23T08:55:29 ICT" duration-ms="680" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:35 ICT" name="setUp" finished-at="2025-02-27T09:28:36 ICT" duration-ms="980" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:29 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-23T08:55:32 ICT" duration-ms="2541" status="PASS">
+        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:36 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-27T09:28:39 ICT" duration-ms="2951" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -503,15 +503,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:32 ICT" name="tearDown" finished-at="2025-02-23T08:55:32 ICT" duration-ms="313" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:39 ICT" name="tearDown" finished-at="2025-02-27T09:28:39 ICT" duration-ms="401" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:32 ICT" name="setUp" finished-at="2025-02-23T08:55:33 ICT" duration-ms="656" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:39 ICT" name="setUp" finished-at="2025-02-27T09:28:41 ICT" duration-ms="1092" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:33 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-23T08:55:36 ICT" duration-ms="2699" status="PASS">
+        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:41 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-27T09:28:44 ICT" duration-ms="3507" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -552,15 +552,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:36 ICT" name="tearDown" finished-at="2025-02-23T08:55:36 ICT" duration-ms="312" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:44 ICT" name="tearDown" finished-at="2025-02-27T09:28:45 ICT" duration-ms="1052" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:36 ICT" name="setUp" finished-at="2025-02-23T08:55:37 ICT" duration-ms="756" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:45 ICT" name="setUp" finished-at="2025-02-27T09:28:46 ICT" duration-ms="1105" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:37 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-23T08:55:40 ICT" duration-ms="2917" status="PASS">
+        <test-method signature="testLogin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:46 ICT" name="testLogin" data-provider="loginData" finished-at="2025-02-27T09:28:50 ICT" duration-ms="3330" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -601,11 +601,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:40 ICT" name="tearDown" finished-at="2025-02-23T08:55:40 ICT" duration-ms="327" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:50 ICT" name="tearDown" finished-at="2025-02-27T09:28:50 ICT" duration-ms="553" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="afterSuite()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-23T08:55:40 ICT" name="afterSuite" finished-at="2025-02-23T08:55:40 ICT" duration-ms="226" status="PASS">
+        <test-method is-config="true" signature="afterSuite()[pri:0, instance:User.Login.User_Login_Test@47eaca72]" started-at="2025-02-27T09:28:50 ICT" name="afterSuite" finished-at="2025-02-27T09:28:50 ICT" duration-ms="294" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterSuite -->
