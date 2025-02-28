@@ -26,7 +26,6 @@ Utils\ConfigUtil.class
 Admin\Tree\TreeTestSearch.class
 Admin\Category\CategoryTestSearch.class
 Admin\Category\CategoryAction.class
-Driver\Driver_Manager_Profile$1.class
 Admin\AuthorManager\AuthorTestUp.class
 Report\Extend_Report.class
 User\Login\User_Login_Page.class
