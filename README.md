@@ -1,3 +1,4 @@
+https://github.com/TungSyo/Automation_AFF.git
 # **🔹 1. Đảm bảo Selenium Hub đang chạy**
 Trước khi thêm node, hãy kiểm tra Hub đã hoạt động chưa:
 
