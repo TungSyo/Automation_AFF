@@ -1,37 +1,59 @@
-# Sử dụng base image phù hợp (ví dụ: Ubuntu)
-FROM ubuntu:22.04
+# Sử dụng base image Ubuntu phiên bản mới hơn
+FROM ubuntu:24.04
 
-# Chuyển sang user root để thực hiện cài đặt
-USER root
+# Set biến môi trường
+ENV CHROME_PATH="/opt/google/chrome/GoogleChromePortable/App/Chrome-bin/chrome.exe"
+ENV CHROMEDRIVER_PATH="/usr/local/bin/chromedriver"
 
-# Tạo thư mục chứa Chrome & ChromeDriver
-RUN mkdir -p /opt/google/chrome/
-
-# Copy Chrome Portable (ZIP) & ChromeDriver vào container
-COPY Driver/GoogleChromePortable.zip /opt/google/
-COPY Driver/chromedriver.exe /usr/local/bin/chromedriver
-
-# Cài đặt unzip, giải nén Chrome Portable và dọn dẹp cache
+# Cài đặt phụ thuộc và thiết lập môi trường
 RUN apt-get update && \
-    apt-get install -y unzip && \
-    unzip /opt/google/GoogleChromePortable.zip -d /opt/google/chrome/ && \
-    rm -rf /var/lib/apt/lists/* && \
-    chmod +x /opt/google/chrome/GoogleChromePortable/App/Chrome-bin/chrome.exe && \
-    chmod +x /usr/local/bin/chromedriver
+    apt-get install -y --no-install-recommends \
+    unzip \
+    libx11-6 \
+    libxcb1 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxext6 \
+    libxfixes3 \
+    libxi6 \
+    libxrandr2 \
+    libxrender1 \
+    libxss1 \
+    libxtst6 \
+    ca-certificates \
+    fonts-liberation \
+    libappindicator1 \
+    libnspr4 \
+    libnss3 \
+    xvfb \
+    && rm -rf /var/lib/apt/lists/*
 
-# Tạo liên kết symbolic cho Google Chrome
-RUN ln -sf /opt/google/chrome/GoogleChromePortable/App/Chrome-bin/chrome.exe /usr/bin/google-chrome
+# Copy và xử lý file
+COPY Driver/GoogleChromePortable.zip /opt/google/
+COPY Driver/chromedriver.exe ${CHROMEDRIVER_PATH}
 
-# Kiểm tra quyền và giải nén thành công
-RUN test -f /usr/bin/google-chrome && \
-    test -f /opt/google/chrome/GoogleChromePortable/App/Chrome-bin/chrome.exe && \
-    echo "Chrome and Chromedriver setup successfully!"
+# Giải nén và thiết lập quyền
+RUN unzip /opt/google/GoogleChromePortable.zip -d /opt/google/chrome/ && \
+    chmod -R 755 /opt/google/chrome && \
+    chmod +x ${CHROME_PATH} && \
+    chmod +x ${CHROMEDRIVER_PATH} && \
+    ln -sf ${CHROME_PATH} /usr/bin/google-chrome
 
-# Chuyển sang user 1200
-USER 1200
+# Tạo user chuyên dụng thay vì dùng UID trực tiếp
+RUN groupadd -r chromeuser && \
+    useradd -r -g chromeuser -u 1200 chromeuser && \
+    mkdir -p /app && \
+    chown -R chromeuser:chromeuser /opt/google /app
 
-# Đặt working directory (tùy chọn)
+USER chromeuser
 WORKDIR /app
 
-# Kết thúc
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+    CMD [ -x "${CHROME_PATH}" ] && [ -x "${CHROMEDRIVER_PATH}" ] || exit 1
+
+# Cleanup
+RUN rm -f /opt/google/GoogleChromePortable.zip
+
 CMD ["echo", "Container is ready!"]

@@ -107,3 +107,7 @@ public class SelenoidTest {
     }
 }
 ```
+docker stop my-container
+docker stop $(docker ps -q)
+docker rm my-container
+docker rm -f $(docker ps -aq)
