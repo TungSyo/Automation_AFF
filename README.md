@@ -38,11 +38,15 @@ docker run -d --network selenium-grid --name chrome-3 \
 Sau khi chạy xong, kiểm tra bằng:
 ```bash
 docker ps
-
-cd "D:\Application\Docker Image"
+D:\Application\Docker
+cd "D:\Zalo\DATN\Automation_AFF"
 --- Build Container bằng dockerfile
+docker build -t windows-container .
+move "C:\ProgramData\DockerDesktop" "D:\Application\Docker_Image"
+mklink /J "C:\ProgramData\DockerDesktop" "D:\Application\Docker_Image"
+mkdir D:\Application\Docker_Image
 
-docker build -t custom-chrome-node .
+
 ```
 
 # **🔹 2. Triển khai CI/CD**
