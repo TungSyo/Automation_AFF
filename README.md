@@ -3,37 +3,13 @@ https://github.com/TungSyo/Automation_AFF.git
 Trước khi thêm node, hãy kiểm tra Hub đã hoạt động chưa:
 
 docker ps
-docker rm -f selenium-hub
-docker run -d -p 4444:4444 --network selenium-grid --name selenium-hub selenium/hub
+// Container độc lập
+docker run -d -p 4444:4444 --name chrome-v131 selenium/standalone-chrome:131.0.6778.264-20250222
 
-## *1.1 Nếu chưa có chạy lại*
+-- Tạo mạng Grid
 docker network create selenium-grid
-docker run -d -p 4444:4444 --network selenium-grid --name selenium-hub selenium/hub
-
-## *1.2 Chạy 3 node Chrome*
-Sau khi Hub đã chạy, chạy các lệnh sau để tạo 3 node Chrome:
-```bash
-docker run -d --network selenium-grid --name chrome-1 \
-  -e HUB_HOST=selenium-hub \
-  -e SE_NODE_MAX_SESSIONS=3 \
-  -e SE_NODE_OVERRIDE_MAX_SESSIONS=true \
-  -e SE_OPTIONS="--headless" \
-  selenium/node-chrome
-
-docker run -d --network selenium-grid --name chrome-2 \
-  -e HUB_HOST=selenium-hub \
-  -e SE_NODE_MAX_SESSIONS=3 \
-  -e SE_NODE_OVERRIDE_MAX_SESSIONS=true \
-  -e SE_OPTIONS="--headless" \
-  selenium/node-chrome
-
-docker run -d --network selenium-grid --name chrome-3 \
-  -e HUB_HOST=selenium-hub \
-  -e SE_NODE_MAX_SESSIONS=3 \
-  -e SE_NODE_OVERRIDE_MAX_SESSIONS=true \
-  -e SE_OPTIONS="--headless" \
-  selenium/node-chrome
 ```
+
 ## *1.3 Kiểm tra lại các node*
 Sau khi chạy xong, kiểm tra bằng:
 ```bash
@@ -46,6 +22,11 @@ move "C:\ProgramData\DockerDesktop" "D:\Application\Docker_Image"
 mklink /J "C:\ProgramData\DockerDesktop" "D:\Application\Docker_Image"
 mkdir D:\Application\Docker_Image
 
+# Xây dựng Docker image
+docker build -t my-angular-app .
+
+# Chạy container từ image
+docker run -p 4200:4200 my-angular-app
 
 ```
 

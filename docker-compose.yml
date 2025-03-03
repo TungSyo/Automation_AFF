@@ -1,24 +1,56 @@
-version: "3"
+version: '3'
 services:
   selenium-hub:
-    image: selenium/hub:4.6.0
+    image: selenium/hub:latest
     container_name: selenium-hub
     ports:
       - "4444:4444"
 
-  chrome:
-    image: selenium/node-chrome:4.6.0
+  chrome-node-1:
+    image: selenium/node-chrome:131.0.6778.264-20250222
+    container_name: chrome-node-1
     depends_on:
       - selenium-hub
     environment:
       - SE_EVENT_BUS_HOST=selenium-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-    shm_size: '2gb'
-    
-  test-runner:
-    build: .
+      - SE_NODE_MAX_SESSIONS=2
+
+  chrome-node-2:
+    image: selenium/node-chrome:131.0.6778.264-20250222
+    container_name: chrome-node-2
     depends_on:
-      - chrome
+      - selenium-hub
     environment:
-      - SELENIUM_REMOTE_URL=http://selenium-hub:4444/wd/hub
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=2
+    volumes:
+      - /dev/shm:/dev/shm
+
+  chrome-node-3:
+    image: selenium/node-chrome:131.0.6778.264-20250222
+    container_name: chrome-node-3
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=2
+    volumes:
+      - /dev/shm:/dev/shm
+
+  chrome-node-debug:
+    image: selenium/node-chrome:131.0.6778.264-20250222
+    container_name: chrome-node-debug
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+    ports:
+      - "7900:7900" # Port NoVNC
+    volumes:
+      - /dev/shm:/dev/shm # Chia sẻ bộ nhớ

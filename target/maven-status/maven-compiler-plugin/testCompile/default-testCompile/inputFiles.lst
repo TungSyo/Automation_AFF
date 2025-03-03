@@ -18,7 +18,6 @@ D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\Category\CategoryTestDel.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\User\Search\User_Search_Action.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Utils\Login_Google.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\Category\CategoryTestUp.java
-D:\Zalo\DATN\Automation_AFF\src\test\java\User\Search\User_Product_Test.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\AuthorManager\AuthorTestUp.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\CreatOrder\OrderPage.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\Login\Admin_Login_Action.java
@@ -28,6 +27,7 @@ D:\Zalo\DATN\Automation_AFF\src\test\java\User\Search\User_Search_Page.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\AuthorManager\AuthorTestAdd.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\Category\CategoryTestAdd.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\User\Register\User_Register_Page.java
+D:\Zalo\DATN\Automation_AFF\src\test\java\User\Search\Search_TC.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\Brand\BrandPage.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\Product\ProductTestAdd.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\User\Login\User_Login_Action.java
@@ -59,6 +59,7 @@ D:\Zalo\DATN\Automation_AFF\src\test\java\User\Register\User_Register_Test.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\AccountManager\AccountTestAdd.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\NewsManager\NewsTestAdd.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\AccountManager\AccountTestUp.java
+D:\Zalo\DATN\Automation_AFF\src\test\java\User\Login\Login_TC.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Base\Base_Test.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\CreatOrder\OrderAccept.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\NewsManager\NewsAction.java
