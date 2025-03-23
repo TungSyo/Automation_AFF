@@ -1,6 +1,36 @@
-# Loại bỏ tất cả các file .log
-*.dump
-*.dumpstream
+# 🔹 Loại bỏ báo cáo test & file tạm sinh ra sau khi chạy test
+test-output/
+reports/
+Automation_AFF/src/resources/reports/
+Automation_AFF/target/
+Automation_AFF/target/surefire-reports/
+Automation_AFF/*.dump
+Automation_AFF/*.dumpstream
 
+# 🔹 Loại bỏ thư mục `node_modules` nếu có dùng frontend trong test
+FE_AFF/node_modules/
 
+# 🔹 Loại bỏ file log, file cache không cần thiết
+*.log
+*.tmp
+*.swp
+*.swo
 
+# 🔹 Không đẩy file config cá nhân hoặc file chứa dữ liệu test lên Git
+config.properties
+resources/data/Admin_Data.xlsx
+resources/data/User_Data.xlsx
+
+# 🔹 Loại bỏ thư mục build & file của Maven / Gradle
+target/
+maven-status/
+pom.xml.tag
+pom.xml.releaseBackup
+dependency-reduced-pom.xml
+
+# 🔹 Không đẩy file của IDE lên (VS Code, IntelliJ, Eclipse)
+.vscode/
+.classpath
+.project
+.idea/
+*.iml
