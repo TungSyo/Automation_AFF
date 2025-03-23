@@ -50,7 +50,7 @@ public class Cart_Add_Test extends Base_Test {
         Extend_Report.startTest("SCartAdd Test - " + description, category);
 
         Base_Action baseAction = new Base_Action(Driver_Manager.getDriver());
-        Cart_Action scardActions = new Cart_Action(Driver_Manager.getDriver());
+        Cart_Add_Action cardActions = new Cart_Add_Action(Driver_Manager.getDriver());
         User_Login_Action loginActions = new User_Login_Action(Driver_Manager.getDriver());
 
         try {
@@ -75,19 +75,19 @@ public class Cart_Add_Test extends Base_Test {
 
                     case "action":
                         Extend_Report.logInfo("Thực hiện test case: " + description);
-                        scardActions.addToSCart(typeCase,productName, productQuantity, productPrice);
+                        cardActions.addToSCart(typeCase,productName, productQuantity, productPrice);
                         break;
 
                     case "verifynotion":
-                        baseAction.handleVerification(scardActions.verifyNotion(result), "thông báo", result);
+                        baseAction.handleVerification(cardActions.verifyNotion(result), "thông báo", result);
                         break;
 
                     case "verifytitle":
-                        baseAction.handleVerification(scardActions.verifyTitle(title), "tiêu đề", title);
+                        baseAction.handleVerification(cardActions.verifyTitle(title), "tiêu đề", title);
                         break;
 
                     case "verifylink":
-                        baseAction.handleVerification(scardActions.verifyLink(link), "link", link);
+                        baseAction.handleVerification(cardActions.verifyLink(link), "link", link);
                         break;
                     case "close":
                         Extend_Report.logInfo("Đóng trình duyệt...");

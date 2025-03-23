@@ -42,12 +42,12 @@ public class Cart_Test extends Base_Test {
             String typeCase)
             throws Exception {
 
-        String category = testType.equalsIgnoreCase("Fail") ? "SCart_Data_Fail" : "SCart_Data_Pass";
+        String category = testType.equalsIgnoreCase("Fail") ? "Cart_Data_Fail" : "Cart_Data_Pass";
 
-        Extend_Report.startTest("SCart Test - " + description, category);
+        Extend_Report.startTest("Cart Test - " + description, category);
 
         Base_Action baseAction = new Base_Action(Driver_Manager.getDriver());
-        Cart_Action scardActions = new Cart_Action(Driver_Manager.getDriver());
+        Cart_Action cardActions = new Cart_Action(Driver_Manager.getDriver());
         User_Login_Action loginActions = new User_Login_Action(Driver_Manager.getDriver());
 
         try {
@@ -74,19 +74,19 @@ public class Cart_Test extends Base_Test {
                         String username = ConfigUtil.getProperty("username_admin");
                         String password = ConfigUtil.getProperty("password_admin");
                         loginActions.login(username, password);
-                        scardActions.SCartToOrder(typeCase);
+                        cardActions.SCartToOrder(typeCase);
                         break;
 
                     case "verifynotion":
-                        baseAction.handleVerification(scardActions.verifyNotion(result), "thông báo", result);
+                        baseAction.handleVerification(cardActions.verifyNotion(result), "thông báo", result);
                         break;
 
                     case "verifytitle":
-                        baseAction.handleVerification(scardActions.verifyTitle(title), "tiêu đề", title);
+                        baseAction.handleVerification(cardActions.verifyTitle(title), "tiêu đề", title);
                         break;
 
                     case "verifylink":
-                        baseAction.handleVerification(scardActions.verifyLink(link), "link", link);
+                        baseAction.handleVerification(cardActions.verifyLink(link), "link", link);
                         break;
                     case "close":
                         Extend_Report.logInfo("Đóng trình duyệt...");

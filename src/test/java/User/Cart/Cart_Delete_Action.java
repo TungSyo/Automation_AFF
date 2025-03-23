@@ -27,14 +27,14 @@ import Report.Extend_Report;
 import User.Search.Search_Page;
 
 @SuppressWarnings("unused")
-public class Cart_Action {
+public class Cart_Delete_Action {
 	private WebDriver driver;
 	private Base_Page basePage;
 	private Base_Action baseAction;
 	private Cart_Page scart_Page;
 	private Search_Page search_Page;
 
-	public Cart_Action(WebDriver driver) {
+	public Cart_Delete_Action(WebDriver driver) {
 		this.driver = driver;
 		this.basePage = new Base_Page(driver);
 		this.scart_Page = new Cart_Page(driver);
@@ -58,12 +58,6 @@ public class Cart_Action {
 		}
 	}
 
-	public void addProductToCart(int... indexes) {
-		for (int index : indexes) {
-			clickAddToCart(index);
-		}
-	}
-
 	public void clickRemoveFromCart(int productIndex) {
 		if (productIndex > 0 && productIndex <= scart_Page.deleteButtons.size()) {
 			scart_Page.deleteButtons.get(productIndex - 1).click();
@@ -78,23 +72,11 @@ public class Cart_Action {
 		}
 	}
 
-	public boolean checkProduct(String productQuantity, String productPrice) {
-		double unitPrice = 1_000_000;
-		double totalWebPrice = 0;
-	
-		for (int i = 0; i < scart_Page.productPrice.size(); i++) {
-			String priceText = scart_Page.productPrice.get(i).getText().replaceAll("[^0-9]", "");
-			double webPrice = Double.parseDouble(priceText);
-			totalWebPrice += webPrice;
+	public void addProductToCart(int... indexes) {
+		for (int index : indexes) {
+			clickAddToCart(index);
 		}
-	
-		String excelPriceText = String.valueOf(productPrice).replaceAll("[^0-9]", "");
-		double excelPrice = Double.parseDouble(excelPriceText);
-	
-		double actualPrice = unitPrice * Double.parseDouble(productQuantity);
-		return actualPrice == totalWebPrice && actualPrice == excelPrice;
 	}
-	
 
 	public void SCartToOrder(String typecase) {
 		switch (typecase) {
@@ -119,6 +101,130 @@ public class Cart_Action {
 				clickButton(scart_Page.selectAllCheckbox);
 				clickButton(scart_Page.selectCheckboxDongy);
 				clickButton(scart_Page.btnToThanhToan);
+				break;
+			default:
+				System.out.println("Invalid typecase: " + typecase);
+		}
+	}
+
+	public boolean checkProduct(String productName, String productQuantity, String productPrice) {
+		double unitPrice = 1_000_000;
+		double totalWebPrice = 0;
+
+		for (int i = 0; i < scart_Page.productName.size(); i++) {
+			if (scart_Page.productName.get(i).getText().equalsIgnoreCase(productName)) {
+
+				String priceText = scart_Page.productPrice.get(i).getText().replaceAll("[^0-9]", "");
+				double webPrice = Double.parseDouble(priceText);
+				totalWebPrice += webPrice;
+
+				String excelPriceText = String.valueOf(productPrice).replaceAll("[^0-9]", "");
+				double excelPrice = Double.parseDouble(excelPriceText);
+
+				double actualPrice = unitPrice * Double.parseDouble(productQuantity);
+				return actualPrice == totalWebPrice && actualPrice == excelPrice;
+			}
+		}
+		return false;
+	}
+
+	public void addToSCart(String typecase, String productName, String productQuantity, String productPrice) {
+		switch (typecase) {
+			case "One":
+				enterText(search_Page.txtSearch, productName);
+				baseAction.sleep(500);
+				clickButton(search_Page.btnSearch);
+				baseAction.sleep(1000);
+				addProductToCart(1);
+				baseAction.sleep(1000);
+				clickButton(scart_Page.btnCart);
+				baseAction.sleep(1000);
+				clickButton(scart_Page.selectAllCheckbox);
+				baseAction.sleep(500);
+				checkProduct(productName, productQuantity, productPrice);
+				break;
+			case "Two":
+				enterText(search_Page.txtSearch, productName);
+				baseAction.sleep(500);
+				clickButton(search_Page.btnSearch);
+				baseAction.sleep(1000);
+				addProductToCart(1, 2, 3);
+				baseAction.sleep(1500);
+				clickButton(scart_Page.btnCart);
+				baseAction.sleep(1000);
+				clickButton(scart_Page.selectAllCheckbox);
+				baseAction.sleep(500);
+				checkProduct(productName, productQuantity, productPrice);
+				break;
+			case "Three":
+				enterText(search_Page.txtSearch, productName);
+				baseAction.sleep(500);
+				clickButton(search_Page.btnSearch);
+				baseAction.sleep(1000);
+				int quantity = (int) Double.parseDouble(productQuantity);
+				for (int i = 0; i < quantity; i++) {
+					clickAddToCart(1);
+					baseAction.sleep(800);
+				}
+				baseAction.sleep(1500);
+				clickButton(scart_Page.btnCart);
+				baseAction.sleep(1000);
+				clickButton(scart_Page.selectAllCheckbox);
+				baseAction.sleep(500);
+				checkProduct(productName, productQuantity, productPrice);
+				break;
+			default:
+				System.out.println("Invalid typecase: " + typecase);
+		}
+	}
+
+	public void updateProductQuantity(String productName, String targetQuantity) {
+		try {
+			if (!scart_Page.productQuantity.isEmpty()) {
+				String currentQuantity = scart_Page.productQuantity.get(0).getDomAttribute("ng-reflect-model");
+				int currentQty = Integer.parseInt(currentQuantity);
+				int targetQty = Integer.parseInt(targetQuantity);
+
+				int timesToChange = targetQty - currentQty;
+
+				if (timesToChange > 0) {
+					for (int i = 0; i < timesToChange; i++) {
+						clickButton(scart_Page.plusButtons.get(0));
+						baseAction.sleep(500);
+					}
+					Extend_Report.logInfo("Đã tăng số lượng sản phẩm từ " + currentQty + " lên " + targetQty);
+				} else if (timesToChange < 0) {
+					for (int i = 0; i < Math.abs(timesToChange); i++) {
+						clickButton(scart_Page.minusButtons.get(0));
+						baseAction.sleep(500);
+					}
+					Extend_Report.logInfo("Đã giảm số lượng sản phẩm từ " + currentQty + " xuống " + targetQty);
+				} else {
+					Extend_Report.logInfo("Số lượng sản phẩm đã đạt yêu cầu: " + targetQty);
+				}
+			}
+		} catch (Exception e) {
+			Extend_Report.logFail("Lỗi khi cập nhật số lượng sản phẩm: " + e.getMessage());
+		}
+	}
+
+	public void UpdateSCart(String typecase, String productName, String productQuantity, String productPrice) {
+		switch (typecase) {
+			case "One":
+				clickButton(basePage.linkProduct);
+				addProductToCart(1);
+				updateProductQuantity(productName, productQuantity);
+				checkProduct(productName, productQuantity, productPrice);
+				break;
+			case "Two":
+				clickButton(basePage.linkProduct);
+				addProductToCart(1);
+				updateProductQuantity(productName, productQuantity);
+				break;
+			case "Three":
+				clickButton(basePage.linkProduct);
+				addProductToCart(1);
+				updateProductQuantity(productName, productQuantity);
 				break;
 			default:
 				System.out.println("Invalid typecase: " + typecase);
