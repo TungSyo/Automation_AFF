@@ -46,7 +46,10 @@ public class Base_Action {
 
      public void clickElement(WebElement element) {
           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-          wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+          wait.until(ExpectedConditions.elementToBeClickable(element));
+          sleep(300);
+          element.click();
+          sleep(500);
      }
 
      public void clearAndEnterText(WebElement element, String text) {
@@ -57,10 +60,21 @@ public class Base_Action {
                wait.until(ExpectedConditions.elementToBeClickable(element));
 
                if (element.isDisplayed() && element.isEnabled()) {
+                    sleep(300);
                     element.click();
+                    sleep(200);
+                    
                     element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+                    sleep(200);
+                    
                     element.sendKeys(Keys.BACK_SPACE);
-                    element.sendKeys(text);
+                    sleep(300);
+                    
+                    for (char c : text.toCharArray()) {
+                         element.sendKeys(String.valueOf(c));
+                         sleep(100 + (int)(Math.random() * 200));
+                    }
+                    sleep(500);
                }
           } catch (Exception e) {
                System.out.println("Không thể nhập text vào phần tử: " + e.getMessage());

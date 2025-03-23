@@ -33,7 +33,7 @@ public class Cart_Add_Action {
     private Base_Action baseAction;
     private Cart_Page scart_Page;
     private Search_Page search_Page;
-    private Cart_Action scart_Action;   
+    private Cart_Action scart_Action;
 
     public Cart_Add_Action(WebDriver driver) {
         this.driver = driver;
@@ -52,51 +52,43 @@ public class Cart_Add_Action {
         baseAction.clearAndEnterText(element, text);
     }
 
-
     public void addToSCart(String typecase, String productName, String productQuantity, String productPrice) {
         switch (typecase) {
             case "One":
                 enterText(search_Page.txtSearch, productName);
-                baseAction.sleep(500);
                 clickButton(search_Page.btnSearch);
-                baseAction.sleep(1000);
                 scart_Action.addProductToCart(1);
-                baseAction.sleep(1000);
                 clickButton(scart_Page.btnCart);
-                baseAction.sleep(1000);
                 clickButton(scart_Page.selectAllCheckbox);
-                baseAction.sleep(500);
-                scart_Action.checkProduct( productQuantity, productPrice);
+                scart_Action.checkProduct(productQuantity, productPrice);
                 break;
             case "Two":
                 enterText(search_Page.txtSearch, productName);
-                baseAction.sleep(500);
+
                 clickButton(search_Page.btnSearch);
-                baseAction.sleep(1000);
+
                 scart_Action.addProductToCart(1, 2, 3);
-                baseAction.sleep(1500);
+
                 clickButton(scart_Page.btnCart);
-                baseAction.sleep(1000);
+
                 clickButton(scart_Page.selectAllCheckbox);
-                baseAction.sleep(500);
+
                 scart_Action.checkProduct(productQuantity, productPrice);
                 break;
             case "Three":
                 enterText(search_Page.txtSearch, productName);
-                baseAction.sleep(500);
+
                 clickButton(search_Page.btnSearch);
-                baseAction.sleep(1000);
+
                 int quantity = (int) Double.parseDouble(productQuantity);
                 for (int i = 0; i < quantity; i++) {
                     scart_Action.clickAddToCart(1);
                     baseAction.sleep(800);
                 }
-                baseAction.sleep(1500);
                 clickButton(scart_Page.btnCart);
-                baseAction.sleep(1000);
+
                 clickButton(scart_Page.selectAllCheckbox);
-                baseAction.sleep(500);
-                scart_Action.checkProduct( productQuantity, productPrice);
+                scart_Action.checkProduct(productQuantity, productPrice);
                 break;
             default:
                 System.out.println("Invalid typecase: " + typecase);
