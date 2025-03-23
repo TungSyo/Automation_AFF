@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ForgotPass_Page {
+public class Forgot_Pass_Page {
 	public WebDriver driver;
 
 	@FindBy(xpath = "//input[contains(@id,'user')]")
@@ -35,7 +35,7 @@ public class ForgotPass_Page {
 	@FindBy(xpath = "//span[@class='p-button-label'][contains(.,'XÁC NHẬN')]")
 	public WebElement btnConfirm;
 
-	public ForgotPass_Page(WebDriver driver) {
+	public Forgot_Pass_Page(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}

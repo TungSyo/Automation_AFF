@@ -1,4 +1,4 @@
-package User.SCart;
+package User.Cart;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class SCart_Page {
+public class Cart_Page {
      public WebDriver driver;
 
      @FindBy(xpath = "//input[contains(@ng-reflect-model,'1')]")
@@ -19,7 +19,12 @@ public class SCart_Page {
      @FindBy(xpath = "//div[@class='cart-product']//a")
      public List<WebElement> productName;
      
+     @FindBy(xpath = "//div[@class='cart-product']//tr//button[contains(@class,'btn-minus')]")
+     public List<WebElement> minusButtons;
 
+     @FindBy(xpath = "//div[@class='cart-product']//tr//button[contains(@class,'btn-plus')]")
+     public List<WebElement> plusButtons;
+     
      @FindBy(xpath = "//button[contains(.,'Thêm vào giỏ')]")
      public List<WebElement> addToCartButtons;
 
@@ -41,7 +46,7 @@ public class SCart_Page {
      @FindBy(xpath = "//li[contains(@class,'header__shop-icon-item header__shop-icon-item-cart')]")
      public WebElement btnCart;
 
-     public SCart_Page(WebDriver driver){
+     public Cart_Page(WebDriver driver){
           this.driver = driver;
           PageFactory.initElements(driver, this);
      }

@@ -1,4 +1,4 @@
-package User.SCart;
+package User.Cart;
 
 import java.io.IOException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import Base.Base_Action;
 import Base.Base_Test;
 import Driver.Driver_Manager;
-import User.SCart.*;
+import User.Cart.*;
 import User.Login.*;
 import Utils.ConfigUtil;
 import Utils.Excel_Util;
@@ -17,7 +17,7 @@ import Report.Extend_Report;
 
 @SuppressWarnings("unused")
 
-public class SCartAdd_Test extends Base_Test {
+public class Cart_Add_Test extends Base_Test {
 
     @DataProvider(name = "scartaddData")
     public Object[][] getSCartAddData() throws IOException, InvalidFormatException {
@@ -50,7 +50,7 @@ public class SCartAdd_Test extends Base_Test {
         Extend_Report.startTest("SCartAdd Test - " + description, category);
 
         Base_Action baseAction = new Base_Action(Driver_Manager.getDriver());
-        SCart_Action scardActions = new SCart_Action(Driver_Manager.getDriver());
+        Cart_Action scardActions = new Cart_Action(Driver_Manager.getDriver());
         User_Login_Action loginActions = new User_Login_Action(Driver_Manager.getDriver());
 
         try {

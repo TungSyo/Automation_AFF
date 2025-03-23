@@ -1,4 +1,4 @@
-package User.SCart;
+package User.Cart;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,17 +27,17 @@ import Report.Extend_Report;
 import User.Search.Search_Page;
 
 @SuppressWarnings("unused")
-public class SCart_Action {
+public class Cart_Action {
 	private WebDriver driver;
 	private Base_Page basePage;
 	private Base_Action baseAction;
-	private SCart_Page scart_Page;
+	private Cart_Page scart_Page;
 	private Search_Page search_Page;
 
-	public SCart_Action(WebDriver driver) {
+	public Cart_Action(WebDriver driver) {
 		this.driver = driver;
 		this.basePage = new Base_Page(driver);
-		this.scart_Page = new SCart_Page(driver);
+		this.scart_Page = new Cart_Page(driver);
 		this.baseAction = new Base_Action(driver);
 		this.search_Page = new Search_Page(driver);
 	}
@@ -76,7 +76,6 @@ public class SCart_Action {
 		for (int index : indexes) {
 			clickAddToCart(index);
 		}
-		clickButton(scart_Page.btnCart);
 	}
 
 	public void SCartToOrder(String typecase) {
@@ -84,18 +83,21 @@ public class SCart_Action {
 			case "One":
 				clickButton(basePage.linkProduct);
 				addProductToCart(1, 2, 3);
+				clickButton(scart_Page.btnCart);
 				clickButton(scart_Page.selectCheckboxDongy);
 				clickButton(scart_Page.btnToThanhToan);
 				break;
 			case "Two":
 				clickButton(basePage.linkProduct);
 				addProductToCart(1, 2, 3);
+				clickButton(scart_Page.btnCart);
 				clickButton(scart_Page.selectAllCheckbox);
 				clickButton(scart_Page.btnToThanhToan);
 				break;
 			case "Three":
 				clickButton(basePage.linkProduct);
 				addProductToCart(1, 2, 3);
+				clickButton(scart_Page.btnCart);
 				clickButton(scart_Page.selectAllCheckbox);
 				clickButton(scart_Page.selectCheckboxDongy);
 				clickButton(scart_Page.btnToThanhToan);
@@ -129,35 +131,46 @@ public class SCart_Action {
 	public void addToSCart(String typecase, String productName, String productQuantity, String productPrice) {
 		switch (typecase) {
 			case "One":
-				// Không cần vì mỗi ssession khác mất hết cache
-				// clickButton(scart_Page.btnCart);
-				// baseAction.sleep(3000);
-				// clickRemoveAllFromCart();
-				// baseAction.sleep(3000);
 				enterText(search_Page.txtSearch, productName);
+				baseAction.sleep(500);
 				clickButton(search_Page.btnSearch);
+				baseAction.sleep(1000);
 				addProductToCart(1);
+				baseAction.sleep(1000);
 				clickButton(scart_Page.btnCart);
+				baseAction.sleep(1000);
 				clickButton(scart_Page.selectAllCheckbox);
+				baseAction.sleep(500);
 				checkProduct(productName, productQuantity, productPrice);
 				break;
 			case "Two":
 				enterText(search_Page.txtSearch, productName);
+				baseAction.sleep(500);
 				clickButton(search_Page.btnSearch);
+				baseAction.sleep(1000);
 				addProductToCart(1, 2, 3);
+				baseAction.sleep(1500);
 				clickButton(scart_Page.btnCart);
+				baseAction.sleep(1000);
 				clickButton(scart_Page.selectAllCheckbox);
+				baseAction.sleep(500);
 				checkProduct(productName, productQuantity, productPrice);
 				break;
 			case "Three":
 				enterText(search_Page.txtSearch, productName);
+				baseAction.sleep(500);
 				clickButton(search_Page.btnSearch);
-				int quantity = Integer.parseInt(productQuantity);
+				baseAction.sleep(1000);
+				int quantity = (int) Double.parseDouble(productQuantity);
 				for (int i = 0; i < quantity; i++) {
-					addProductToCart(1);
+					clickAddToCart(1);
+					baseAction.sleep(800);
 				}
+				baseAction.sleep(1500);
 				clickButton(scart_Page.btnCart);
+				baseAction.sleep(1000);
 				clickButton(scart_Page.selectAllCheckbox);
+				baseAction.sleep(500);
 				checkProduct(productName, productQuantity, productPrice);
 				break;
 			default:
@@ -168,7 +181,6 @@ public class SCart_Action {
 	public void updateProductQuantity(String productName, String targetQuantity) {
 		try {
 			if (!scart_Page.productQuantity.isEmpty()) {
-				// Lấy số lượng hiện tại của sản phẩm đầu tiên
 				String currentQuantity = scart_Page.productQuantity.get(0).getDomAttribute("ng-reflect-model");
 				int currentQty = Integer.parseInt(currentQuantity);
 				int targetQty = Integer.parseInt(targetQuantity);
@@ -177,17 +189,13 @@ public class SCart_Action {
 
 				if (timesToChange > 0) {
 					for (int i = 0; i < timesToChange; i++) {
-						WebElement increaseButton = driver
-								.findElement(By.xpath("//button[contains(@class,'increase')]"));
-						increaseButton.click();
+						clickButton(scart_Page.plusButtons.get(0));
 						baseAction.sleep(500);
 					}
 					Extend_Report.logInfo("Đã tăng số lượng sản phẩm từ " + currentQty + " lên " + targetQty);
 				} else if (timesToChange < 0) {
 					for (int i = 0; i < Math.abs(timesToChange); i++) {
-						WebElement decreaseButton = driver
-								.findElement(By.xpath("//button[contains(@class,'decrease')]"));
-						decreaseButton.click();
+						clickButton(scart_Page.minusButtons.get(0));
 						baseAction.sleep(500);
 					}
 					Extend_Report.logInfo("Đã giảm số lượng sản phẩm từ " + currentQty + " xuống " + targetQty);

@@ -26,16 +26,16 @@ import Base.Base_Test;
 import Report.Extend_Report;
 
 @SuppressWarnings("unused")
-public class ChangePass_Action {
+public class Change_Pass_Action {
 	private WebDriver driver;
 	private Base_Page basePage;
 	private Base_Action baseAction;
-	private ChangePass_Page changepassPage;
+	private Change_Pass_Page changepassPage;
 
-	public ChangePass_Action(WebDriver driver) {
+	public Change_Pass_Action(WebDriver driver) {
 		this.driver = driver;
 		this.basePage = new Base_Page(driver);
-		this.changepassPage = new ChangePass_Page(driver);
+		this.changepassPage = new Change_Pass_Page(driver);
 		this.baseAction = new Base_Action(driver);
 	}
 

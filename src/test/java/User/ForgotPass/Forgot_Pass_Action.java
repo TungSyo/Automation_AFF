@@ -29,17 +29,17 @@ import Report.Extend_Report;
 import Utils.Email_Reader;
 
 @SuppressWarnings("unused")
-public class ForgotPass_Action {
+public class Forgot_Pass_Action {
 	private WebDriver driver;
 	private Base_Page basePage;
 	private Base_Action baseAction;
-	private ForgotPass_Page forgotpassPage;
+	private Forgot_Pass_Page forgotpassPage;
 	public boolean shouldLoginGoogle = false;
 
-	public ForgotPass_Action(WebDriver driver) {
+	public Forgot_Pass_Action(WebDriver driver) {
 		this.driver = driver;
 		this.basePage = new Base_Page(driver);
-		this.forgotpassPage = new ForgotPass_Page(driver);
+		this.forgotpassPage = new Forgot_Pass_Page(driver);
 		this.baseAction = new Base_Action(driver);
 	}
 

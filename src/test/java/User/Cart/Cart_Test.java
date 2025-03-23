@@ -1,12 +1,14 @@
-package User.ChangePass;
+package User.Cart;
 
 import java.io.IOException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import Base.*;
+
+import Base.Base_Action;
+import Base.Base_Test;
 import Driver.Driver_Manager;
-import User.ChangePass.*;
+import User.Cart.*;
 import User.Login.*;
 import Utils.ConfigUtil;
 import Utils.Excel_Util;
@@ -15,40 +17,38 @@ import Report.Extend_Report;
 
 @SuppressWarnings("unused")
 
-public class ChangePass_Test extends Base_Test {
+public class Cart_Test extends Base_Test {
 
-    @DataProvider(name = "changepassData")
-    public Object[][] getChangePassData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", "ChangePass");
+    @DataProvider(name = "scartData")
+    public Object[][] getSCartData() throws IOException, InvalidFormatException {
+        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", "SCart");
         int rowCount = excel.getRowCount();
-        Object[][] data = new Object[rowCount - 1][8];
+        Object[][] data = new Object[rowCount - 1][6];
 
         for (int i = 1; i < rowCount; i++) {
-            data[i - 1][0] = excel.getCellData(i, "Email");
-            data[i - 1][1] = excel.getCellData(i, "PassOld");
-            data[i - 1][2] = excel.getCellData(i, "PassNew");
-            data[i - 1][3] = excel.getCellData(i, "Result");
-            data[i - 1][4] = excel.getCellData(i, "Title");
-            data[i - 1][5] = excel.getCellData(i, "Link");
-            data[i - 1][6] = excel.getCellData(i, "Description");
-            data[i - 1][7] = excel.getCellData(i, "TestType");
+            data[i - 1][0] = excel.getCellData(i, "Result");
+            data[i - 1][1] = excel.getCellData(i, "Title");
+            data[i - 1][2] = excel.getCellData(i, "Link");
+            data[i - 1][3] = excel.getCellData(i, "Description");
+            data[i - 1][4] = excel.getCellData(i, "TestType");
+            data[i - 1][5] = excel.getCellData(i, "TypeCase");
         }
 
         return data;
     }
 
-    @Test(dataProvider = "changepassData", groups = { "Success", "Fail" })
-    public void testChangePass(String email, String oldpass, String newpass, String result, String title, String link,
-            String description, String testType)
+    @Test(dataProvider = "scartData", groups = { "Success", "Fail" })
+    public void testSCart(String result, String title, String link, String description, String testType,
+            String typeCase)
             throws Exception {
 
-        String category = testType.equalsIgnoreCase("Fail") ? "ChangePass_Data_Fail" : "ChangePass_Data_Pass";
+        String category = testType.equalsIgnoreCase("Fail") ? "SCart_Data_Fail" : "SCart_Data_Pass";
 
-        Extend_Report.startTest("Change_Pass Test - " + description, category);
+        Extend_Report.startTest("SCart Test - " + description, category);
 
         Base_Action baseAction = new Base_Action(Driver_Manager.getDriver());
+        Cart_Action scardActions = new Cart_Action(Driver_Manager.getDriver());
         User_Login_Action loginActions = new User_Login_Action(Driver_Manager.getDriver());
-        ChangePass_Action changepassActions = new ChangePass_Action(Driver_Manager.getDriver());
 
         try {
             Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", "Step");
@@ -65,27 +65,28 @@ public class ChangePass_Test extends Base_Test {
 
                     case "navigate":
                         String url_user = ConfigUtil.getProperty("url_user");
-                        url_user = baseAction.convertLocalhostLink(url_user); 
-                        Driver_Manager.getDriver().get(url_user);
+                        baseAction.navigate(url_user);
                         Extend_Report.logInfo("Điều hướng đến " + url_user);
                         break;
 
                     case "action":
-                        loginActions.login(email, oldpass);
-                        baseAction.sleep(1500); 
-                        changepassActions.changePass(oldpass, newpass);
+                        Extend_Report.logInfo("Thực hiện test case: " + description);
+                        String username = ConfigUtil.getProperty("username_admin");
+                        String password = ConfigUtil.getProperty("password_admin");
+                        loginActions.login(username, password);
+                        scardActions.SCartToOrder(typeCase);
                         break;
 
                     case "verifynotion":
-                        baseAction.handleVerification(changepassActions.verifyNotion(result), "thông báo", result);
+                        baseAction.handleVerification(scardActions.verifyNotion(result), "thông báo", result);
                         break;
 
                     case "verifytitle":
-                        baseAction.handleVerification(changepassActions.verifyTitle(title), "tiêu đề", title);
+                        baseAction.handleVerification(scardActions.verifyTitle(title), "tiêu đề", title);
                         break;
 
                     case "verifylink":
-                        baseAction.handleVerification(changepassActions.verifyLink(link), "link", link);
+                        baseAction.handleVerification(scardActions.verifyLink(link), "link", link);
                         break;
                     case "close":
                         Extend_Report.logInfo("Đóng trình duyệt...");
