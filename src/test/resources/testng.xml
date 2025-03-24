@@ -13,8 +13,8 @@
             <!-- <class name="User.Information.User_Information_Test"/> -->
             <!-- <class name="User.ChangePass.User_Change_Pass_Test"/> -->
             <!-- <class name="User.ForgotPass.ForgotPass_Test"/> -->
-            <!-- <class name="User.Cart.Cart_Update_Test"/> -->
-            <class name="User.Cart.Cart_Add_Test"/>
+            <class name="User.Cart.Cart_Update_Test"/>
+            <!-- <class name="User.Cart.Cart_Add_Test"/> -->
             <!-- <class name="User.Cart.Cart_Delete_Test"/> -->
             <!-- <class name="User.Cart.Cart_Test"/> -->
         </classes>

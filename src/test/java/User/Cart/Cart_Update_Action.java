@@ -159,9 +159,9 @@ public class Cart_Update_Action {
         try (FileInputStream fileInputStream = new FileInputStream(file);
                 Workbook workbook = new XSSFWorkbook(fileInputStream)) {
 
-            Sheet sheet = workbook.getSheet("SCart");
+            Sheet sheet = workbook.getSheet("SCartUpd");
             if (sheet == null) {
-                System.err.println("[ERROR] Sheet 'SCart' not found in the Excel file.");
+                System.err.println("[ERROR] Sheet 'SCartUpd' not found in the Excel file.");
                 return testData;
             }
 
