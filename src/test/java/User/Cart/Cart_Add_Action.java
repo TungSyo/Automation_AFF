@@ -153,10 +153,10 @@ public class Cart_Add_Action {
 
             for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 Row row = sheet.getRow(i);
-                if (row == null || row.getCell(1) == null || row.getCell(2) == null)
+                if (row == null || row.getCell(4) == null || row.getCell(5) == null)
                     continue;
-                String expectedTitle = row.getCell(1).getStringCellValue();
-                String expectedLink = row.getCell(2).getStringCellValue().trim();
+                String expectedTitle = row.getCell(4).getStringCellValue();
+                String expectedLink = row.getCell(5).getStringCellValue().trim();
                 testData.add(new Object[] { expectedTitle, expectedLink });
             }
         }

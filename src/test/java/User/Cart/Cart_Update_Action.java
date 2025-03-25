@@ -56,8 +56,8 @@ public class Cart_Update_Action {
         try {
             if (!scart_Page.productQuantity.isEmpty()) {
                 String currentQuantity = scart_Page.productQuantity.get(0).getDomAttribute("ng-reflect-model");
-                int currentQty = Integer.parseInt(currentQuantity);
-                int targetQty = Integer.parseInt(productQuantity);
+                int currentQty = (int) Math.round(Double.parseDouble(currentQuantity));
+                int targetQty = (int) Math.round(Double.parseDouble(productQuantity));
 
                 int timesToChange = targetQty - currentQty;
 
@@ -87,7 +87,9 @@ public class Cart_Update_Action {
             case "One":
                 clickButton(basePage.linkProduct);
                 scart_Action.addProductToCart(1);
+                clickButton(scart_Page.btnCart);
                 updateProductQuantity( productQuantity);
+                clickButton(scart_Page.selectAllCheckbox);
                 scart_Action.checkProduct( productQuantity, productPrice);
                 break;
             case "Two":
@@ -97,12 +99,18 @@ public class Cart_Update_Action {
                     scart_Action.clickAddToCart(1);
                     baseAction.sleep(800);
                 }
+                clickButton(scart_Page.btnCart);
                 updateProductQuantity( productQuantity);
+                clickButton(scart_Page.selectAllCheckbox);
+                scart_Action.checkProduct( productQuantity, productPrice);
                 break;
             case "Three":
                 clickButton(basePage.linkProduct);
                 scart_Action.addProductToCart(1);
+                clickButton(scart_Page.btnCart);
                 updateProductQuantity(productQuantity);
+                clickButton(scart_Page.selectAllCheckbox);
+                scart_Action.checkProduct( productQuantity, productPrice);
                 break;
             default:
                 System.out.println("Invalid typecase: " + typecase);
@@ -169,8 +177,8 @@ public class Cart_Update_Action {
                 Row row = sheet.getRow(i);
                 if (row == null || row.getCell(1) == null || row.getCell(2) == null)
                     continue;
-                String expectedTitle = row.getCell(1).getStringCellValue();
-                String expectedLink = row.getCell(2).getStringCellValue().trim();
+                String expectedTitle = row.getCell(3).getStringCellValue();
+                String expectedLink = row.getCell(4).getStringCellValue().trim();
                 testData.add(new Object[] { expectedTitle, expectedLink });
             }
         }

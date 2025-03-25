@@ -4,7 +4,7 @@
         <groups>
             <run>
                 <include name="Success"/>
-                <!-- <include name="Fail"/> -->
+                <include name="Fail"/>
             </run>
         </groups>
         <classes>
