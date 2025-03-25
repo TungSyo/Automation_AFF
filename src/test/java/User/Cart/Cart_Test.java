@@ -42,7 +42,7 @@ public class Cart_Test extends Base_Test {
             String typeCase)
             throws Exception {
 
-        String category = testType.equalsIgnoreCase("Fail") ? "Cart_Data_Fail" : "Cart_Data_Pass";
+        String category = testType.equalsIgnoreCase("Fail") ?  "SCart_Data_Fail" : "SCart_Data_Pass";
 
         Extend_Report.startTest("Cart Test - " + description, category);
 

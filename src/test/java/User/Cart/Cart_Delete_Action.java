@@ -33,6 +33,7 @@ public class Cart_Delete_Action {
 	private Base_Action baseAction;
 	private Cart_Page scart_Page;
 	private Search_Page search_Page;
+	private Cart_Action cartActions;
 
 	public Cart_Delete_Action(WebDriver driver) {
 		this.driver = driver;
@@ -40,6 +41,7 @@ public class Cart_Delete_Action {
 		this.scart_Page = new Cart_Page(driver);
 		this.baseAction = new Base_Action(driver);
 		this.search_Page = new Search_Page(driver);
+		this.cartActions = new Cart_Action(driver);
 	}
 
 	public void clickButton(WebElement element) {
@@ -48,14 +50,6 @@ public class Cart_Delete_Action {
 
 	public void enterText(WebElement element, String text) {
 		baseAction.clearAndEnterText(element, text);
-	}
-
-	public void clickAddToCart(int index) {
-		if (index > 0 && index <= scart_Page.addToCartButtons.size()) {
-			scart_Page.addToCartButtons.get(index - 1).click();
-		} else {
-			throw new IndexOutOfBoundsException("Không tìm thấy sản phẩm ở vị trí: " + index);
-		}
 	}
 
 	public void clickRemoveFromCart(int productIndex) {
@@ -71,163 +65,20 @@ public class Cart_Delete_Action {
 			scart_Page.deleteButtons.get(0).click();
 		}
 	}
-
-	public void addProductToCart(int... indexes) {
-		for (int index : indexes) {
-			clickAddToCart(index);
-		}
-	}
-
-	public void SCartToOrder(String typecase) {
-		switch (typecase) {
+	public void deleteProduct(String typeCase) {
+		switch (typeCase) {
 			case "One":
 				clickButton(basePage.linkProduct);
-				addProductToCart(1, 2, 3);
+				cartActions.addProductToCart(1,2,3);
 				clickButton(scart_Page.btnCart);
-				clickButton(scart_Page.selectCheckboxDongy);
-				clickButton(scart_Page.btnToThanhToan);
+				clickRemoveFromCart(1);
 				break;
 			case "Two":
 				clickButton(basePage.linkProduct);
-				addProductToCart(1, 2, 3);
+				cartActions.addProductToCart(1,2,3);
 				clickButton(scart_Page.btnCart);
-				clickButton(scart_Page.selectAllCheckbox);
-				clickButton(scart_Page.btnToThanhToan);
+				clickRemoveAllFromCart();
 				break;
-			case "Three":
-				clickButton(basePage.linkProduct);
-				addProductToCart(1, 2, 3);
-				clickButton(scart_Page.btnCart);
-				clickButton(scart_Page.selectAllCheckbox);
-				clickButton(scart_Page.selectCheckboxDongy);
-				clickButton(scart_Page.btnToThanhToan);
-				break;
-			default:
-				System.out.println("Invalid typecase: " + typecase);
-		}
-	}
-
-	public boolean checkProduct(String productName, String productQuantity, String productPrice) {
-		double unitPrice = 1_000_000;
-		double totalWebPrice = 0;
-
-		for (int i = 0; i < scart_Page.productName.size(); i++) {
-			if (scart_Page.productName.get(i).getText().equalsIgnoreCase(productName)) {
-
-				String priceText = scart_Page.productPrice.get(i).getText().replaceAll("[^0-9]", "");
-				double webPrice = Double.parseDouble(priceText);
-				totalWebPrice += webPrice;
-
-				String excelPriceText = String.valueOf(productPrice).replaceAll("[^0-9]", "");
-				double excelPrice = Double.parseDouble(excelPriceText);
-
-				double actualPrice = unitPrice * Double.parseDouble(productQuantity);
-				return actualPrice == totalWebPrice && actualPrice == excelPrice;
-			}
-		}
-		return false;
-	}
-
-	public void addToSCart(String typecase, String productName, String productQuantity, String productPrice) {
-		switch (typecase) {
-			case "One":
-				enterText(search_Page.txtSearch, productName);
-				baseAction.sleep(500);
-				clickButton(search_Page.btnSearch);
-				baseAction.sleep(1000);
-				addProductToCart(1);
-				baseAction.sleep(1000);
-				clickButton(scart_Page.btnCart);
-				baseAction.sleep(1000);
-				clickButton(scart_Page.selectAllCheckbox);
-				baseAction.sleep(500);
-				checkProduct(productName, productQuantity, productPrice);
-				break;
-			case "Two":
-				enterText(search_Page.txtSearch, productName);
-				baseAction.sleep(500);
-				clickButton(search_Page.btnSearch);
-				baseAction.sleep(1000);
-				addProductToCart(1, 2, 3);
-				baseAction.sleep(1500);
-				clickButton(scart_Page.btnCart);
-				baseAction.sleep(1000);
-				clickButton(scart_Page.selectAllCheckbox);
-				baseAction.sleep(500);
-				checkProduct(productName, productQuantity, productPrice);
-				break;
-			case "Three":
-				enterText(search_Page.txtSearch, productName);
-				baseAction.sleep(500);
-				clickButton(search_Page.btnSearch);
-				baseAction.sleep(1000);
-				int quantity = (int) Double.parseDouble(productQuantity);
-				for (int i = 0; i < quantity; i++) {
-					clickAddToCart(1);
-					baseAction.sleep(800);
-				}
-				baseAction.sleep(1500);
-				clickButton(scart_Page.btnCart);
-				baseAction.sleep(1000);
-				clickButton(scart_Page.selectAllCheckbox);
-				baseAction.sleep(500);
-				checkProduct(productName, productQuantity, productPrice);
-				break;
-			default:
-				System.out.println("Invalid typecase: " + typecase);
-		}
-	}
-
-	public void updateProductQuantity(String productName, String targetQuantity) {
-		try {
-			if (!scart_Page.productQuantity.isEmpty()) {
-				String currentQuantity = scart_Page.productQuantity.get(0).getDomAttribute("ng-reflect-model");
-				int currentQty = Integer.parseInt(currentQuantity);
-				int targetQty = Integer.parseInt(targetQuantity);
-
-				int timesToChange = targetQty - currentQty;
-
-				if (timesToChange > 0) {
-					for (int i = 0; i < timesToChange; i++) {
-						clickButton(scart_Page.plusButtons.get(0));
-						baseAction.sleep(500);
-					}
-					Extend_Report.logInfo("Đã tăng số lượng sản phẩm từ " + currentQty + " lên " + targetQty);
-				} else if (timesToChange < 0) {
-					for (int i = 0; i < Math.abs(timesToChange); i++) {
-						clickButton(scart_Page.minusButtons.get(0));
-						baseAction.sleep(500);
-					}
-					Extend_Report.logInfo("Đã giảm số lượng sản phẩm từ " + currentQty + " xuống " + targetQty);
-				} else {
-					Extend_Report.logInfo("Số lượng sản phẩm đã đạt yêu cầu: " + targetQty);
-				}
-			}
-		} catch (Exception e) {
-			Extend_Report.logFail("Lỗi khi cập nhật số lượng sản phẩm: " + e.getMessage());
-		}
-	}
-
-	public void UpdateSCart(String typecase, String productName, String productQuantity, String productPrice) {
-		switch (typecase) {
-			case "One":
-				clickButton(basePage.linkProduct);
-				addProductToCart(1);
-				updateProductQuantity(productName, productQuantity);
-				checkProduct(productName, productQuantity, productPrice);
-				break;
-			case "Two":
-				clickButton(basePage.linkProduct);
-				addProductToCart(1);
-				updateProductQuantity(productName, productQuantity);
-				break;
-			case "Three":
-				clickButton(basePage.linkProduct);
-				addProductToCart(1);
-				updateProductQuantity(productName, productQuantity);
-				break;
-			default:
-				System.out.println("Invalid typecase: " + typecase);
 		}
 	}
 
@@ -281,9 +132,9 @@ public class Cart_Delete_Action {
 		try (FileInputStream fileInputStream = new FileInputStream(file);
 				Workbook workbook = new XSSFWorkbook(fileInputStream)) {
 
-			Sheet sheet = workbook.getSheet("SCart");
+			Sheet sheet = workbook.getSheet("SCartDel");
 			if (sheet == null) {
-				System.err.println("[ERROR] Sheet 'SCart' not found in the Excel file.");
+				System.err.println("[ERROR] Sheet 'SCartDelete' not found in the Excel file.");
 				return testData;
 			}
 

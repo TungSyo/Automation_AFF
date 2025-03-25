@@ -75,9 +75,29 @@ Sao chép
 Chỉnh sửa
 Start-Service actions.runner.TungSyo-BE_AFF
 Đẩy file YAML lên GitHub:
-
+  
 Lưu lại file YAML đã chỉnh sửa.
 Commit và push lên repository.
 Kiểm tra workflow:
 
 Vào GitHub > Repository của bạn > Actions để xem trạng thái workflow chạy trên self-hosted runner.
+
+
+project-root/
+├── frontend/
+│   ├── Dockerfile
+│   └── src/
+│
+├── backend/
+│   ├── Dockerfile
+│   └── src/
+│   
+├── test/
+│   ├── Dockerfile.test
+│   ├── pom.xml
+│   └── src/
+|
+├── docker-compose.yml - chưa có
+└── .github/
+    └── workflows/
+        └── ci-cd.yml - có rồi chưa làm ở trong
