@@ -20,7 +20,7 @@ public class Base_Page {
 	public WebElement btnSearch;
 
 	@FindBy(xpath = "//li[@class='header__shop-icon-item header__shop-icon-item-cart']")
-	public WebElement btnOrder;
+	public WebElement btnSCart;
 
 	@FindBy(xpath = "//app-header/div[2]/div[1]/div[3]/div[3]/ul[1]/li[2]")
 	public WebElement btnAccount;

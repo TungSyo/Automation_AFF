@@ -8,17 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 public class Forgot_Pass_Page {
 	public WebDriver driver;
 
+	// Input
 	@FindBy(xpath = "//input[contains(@id,'user')]")
 	public WebElement txtEmailForgot;
-
-	@FindBy(xpath = "//a[contains(.,'Quay lại đăng nhập')]")
-	public WebElement linkBackLogin;
-
-	@FindBy(xpath = "//span[contains(.,'Lấy mã OTP')]")
-	public WebElement btnGetOTP;
-
-	@FindBy(xpath = "//span[contains(.,'Đến trang đặt lại mật khẩu')]")
-	public WebElement btnToResetPass;
 
 	@FindBy(xpath = "//input[contains(@placeholder,'Mật khẩu mới')]")
 	public WebElement txtNewPass;
@@ -29,8 +21,19 @@ public class Forgot_Pass_Page {
 	@FindBy(xpath = "//input[contains(@id,'otp')]")
 	public WebElement txtOTP;
 
+	// Link
+	@FindBy(xpath = "//a[contains(.,'Quay lại đăng nhập')]")
+	public WebElement linkBackLogin;
+
 	@FindBy(xpath = "//a[@href='/resend-email-otp']")
 	public WebElement linkResendOTP;
+
+	// Button
+	@FindBy(xpath = "//span[contains(.,'Lấy mã OTP')]")
+	public WebElement btnGetOTP;
+
+	@FindBy(xpath = "//span[contains(.,'Đến trang đặt lại mật khẩu')]")
+	public WebElement btnToResetPass;
 
 	@FindBy(xpath = "//span[@class='p-button-label'][contains(.,'XÁC NHẬN')]")
 	public WebElement btnConfirm;

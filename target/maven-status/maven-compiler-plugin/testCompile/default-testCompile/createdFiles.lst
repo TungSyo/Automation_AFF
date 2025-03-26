@@ -34,7 +34,6 @@ Admin\Tree\TreeTestSearch.class
 User\Information\Information_Page.class
 User\Search\Search_Test.class
 Admin\AuthorManager\AuthorTestUp.class
-User\Cart\Cart_Delete_Action.class
 Report\Extend_Report.class
 User\Login\User_Login_Page.class
 User\ForgotPass\Forgot_Pass_Action.class

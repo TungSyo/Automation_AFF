@@ -8,12 +8,18 @@ import org.openqa.selenium.support.PageFactory;
 public class Information_Page {
 	public WebDriver driver;
 
+	// Link
 	@FindBy(xpath = "(//a[@class='nav-link'][contains(.,'Thông tin người dùng')])[1]")
 	public WebElement linkInfor;
 
+	// Button
 	@FindBy(xpath = "//button[@class='btn-update-user'][contains(.,'Cập nhật')]")
 	public WebElement btnUpdate_1;
 
+	@FindBy(xpath = "//button[@type='submit'][contains(.,'Cập nhật')]")
+	public WebElement btnUpdate_2;
+	
+	// Input
 	@FindBy(xpath = "//input[contains(@placeholder,'Tên người dùng')]")
 	public WebElement txtName;
 
@@ -44,9 +50,6 @@ public class Information_Page {
 	@FindBy(xpath = "//input[contains(@placeholder,'Số tài khoản')]")
 	public WebElement txtStk;
 
-	@FindBy(xpath = "//button[@type='submit'][contains(.,'Cập nhật')]")
-	public WebElement btnUpdate_2;
-	
 	public Information_Page(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

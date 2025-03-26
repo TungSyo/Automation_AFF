@@ -65,19 +65,31 @@ public class Cart_Delete_Action {
 			scart_Page.deleteButtons.get(0).click();
 		}
 	}
+
 	public void deleteProduct(String typeCase) {
 		switch (typeCase) {
 			case "One":
 				clickButton(basePage.linkProduct);
-				cartActions.addProductToCart(1,2,3);
+				cartActions.addProductToCart(1, 2, 3);
 				clickButton(scart_Page.btnCart);
+				int initialProductCount = scart_Page.productName.size();
+				System.out.println("Số lượng sản phẩm ban đầu: " + initialProductCount);
 				clickRemoveFromCart(1);
+				int finalProductCount = scart_Page.productName.size();
+				System.out.println("Số lượng sản phẩm sau khi xóa: " + finalProductCount);
+				if (finalProductCount != initialProductCount - 1) {
+					throw new AssertionError("Số lượng sản phẩm không giảm đúng sau khi xóa");
+				}
 				break;
 			case "Two":
 				clickButton(basePage.linkProduct);
-				cartActions.addProductToCart(1,2,3);
+				cartActions.addProductToCart(1, 2, 3);
+				int initialCount = scart_Page.productName.size();
+				System.out.println("Số lượng sản phẩm ban đầu: " + initialCount);
 				clickButton(scart_Page.btnCart);
 				clickRemoveAllFromCart();
+				int finalCount = scart_Page.productName.size();
+				System.out.println("Số lượng sản phẩm sau khi xóa: " + finalCount);
 				break;
 		}
 	}
