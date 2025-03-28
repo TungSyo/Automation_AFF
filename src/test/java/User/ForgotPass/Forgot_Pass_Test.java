@@ -16,10 +16,12 @@ import Report.Extend_Report;
 @SuppressWarnings("unused")
 
 public class Forgot_Pass_Test extends Base_Test {
+    private static final String DATA_SHEET = "ForgotPass";
+    private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "forgotpassData")
     public Object[][] getForgotPassData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", "ForgotPass");
+        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", DATA_SHEET);
         int rowCount = excel.getRowCount();
         Object[][] data = new Object[rowCount - 1][9];
 
@@ -52,7 +54,7 @@ public class Forgot_Pass_Test extends Base_Test {
         Forgot_Pass_Action forgotpassActions = new Forgot_Pass_Action(Driver_Manager.getDriver());
 
         try {
-            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", "Step");
+            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", STEP_SHEET);
 
             int rowCount = excelSteps.getRowCount();
 
@@ -93,8 +95,13 @@ public class Forgot_Pass_Test extends Base_Test {
                 }
             }
         } catch (Exception e) {
+            String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(),
+                    "testForgotPass_Exception", "ForgotPassTest");
+            Extend_Report.attachScreenshot(screenshotPath);
             baseAction.handleTestException(e, description);
             throw e;
+        } finally {
+            Extend_Report.endTest();
         }
     }
 }

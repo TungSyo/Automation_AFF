@@ -14,13 +14,15 @@ import User.Register.Register_Action;
 import Utils.ConfigUtil;
 import Utils.Excel_Util;
 import Report.Extend_Report;
-
+import Utils.ScreenShotUtil;
 @SuppressWarnings("unused")
 public class Register_Test extends Base_Test {
+    private static final String DATA_SHEET = "Register";
+    private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "registerData")
     public Object[][] getRegisterData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", "Register");
+        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", DATA_SHEET);
         int rowCount = excel.getRowCount();
         Object[][] data = new Object[rowCount - 1][20];
 
@@ -62,7 +64,7 @@ public class Register_Test extends Base_Test {
         Register_Action registerActions = new Register_Action(Driver_Manager.getDriver());
 
         try {
-            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", "Step");
+            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", STEP_SHEET);
             int rowCount = excelSteps.getRowCount();
 
             for (int i = 1; i < rowCount; i++) {
@@ -105,8 +107,12 @@ public class Register_Test extends Base_Test {
                 }
             }
         } catch (Exception e) {
+            String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(), "testRegister_Exception", "RegisterTest");
+            Extend_Report.attachScreenshot(screenshotPath);
             baseAction.handleTestException(e, description);
             throw e;
+        } finally {
+            Extend_Report.endTest();
         }
     }
 }

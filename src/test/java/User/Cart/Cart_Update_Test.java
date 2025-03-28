@@ -18,10 +18,12 @@ import Report.Extend_Report;
 @SuppressWarnings("unused")
 
 public class Cart_Update_Test extends Base_Test {
+    private static final String DATA_SHEET = "SCartUpd";
+    private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "cartUpdateData")
     public Object[][] getSCartUpdateData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", "SCartUpd");
+        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", DATA_SHEET);
         int rowCount = excel.getRowCount();
         Object[][] data = new Object[rowCount - 1][8];
 
@@ -54,7 +56,7 @@ public class Cart_Update_Test extends Base_Test {
         User_Login_Action loginActions = new User_Login_Action(Driver_Manager.getDriver());
 
         try {
-            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", "Step");
+            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", STEP_SHEET);
 
             int rowCount = excelSteps.getRowCount();
 
@@ -96,8 +98,12 @@ public class Cart_Update_Test extends Base_Test {
                 }
             }
         } catch (Exception e) {
+            String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(), "testCartUpdate_Exception", "CartUpdateTest");
+            Extend_Report.attachScreenshot(screenshotPath);
             baseAction.handleTestException(e, description);
             throw e;
+        } finally {
+            Extend_Report.endTest();
         }
     }
 }

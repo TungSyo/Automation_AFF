@@ -19,10 +19,12 @@ import Report.Extend_Report;
 @SuppressWarnings("unused")
 
 public class Search_Test extends Base_Test {
+    private static final String DATA_SHEET = "Search";
+    private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "searchData")
     public Object[][] getSearchData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", "Search");
+        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", DATA_SHEET);
         int rowCount = excel.getRowCount();
         Object[][] data = new Object[rowCount - 1][7];
 
@@ -49,7 +51,7 @@ public class Search_Test extends Base_Test {
         Search_Action searchActions = new Search_Action(Driver_Manager.getDriver());
 
         try {
-            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", "Step");
+            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", STEP_SHEET);
             int rowCount = excelSteps.getRowCount();
 
             for (int i = 1; i < rowCount; i++) {
@@ -91,8 +93,12 @@ public class Search_Test extends Base_Test {
                 }
             }
         } catch (Exception e) {
+            String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(), "testSearch_Exception", "SearchTest");
+            Extend_Report.attachScreenshot(screenshotPath);
             baseAction.handleTestException(e, description);
             throw e;
+        } finally {
+            Extend_Report.endTest();
         }
     }
 }

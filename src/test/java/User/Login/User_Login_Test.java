@@ -18,9 +18,12 @@ import Report.Extend_Report;
 
 public class User_Login_Test extends Base_Test {
 
+    private static final String DATA_SHEET = "Login";
+    private static final String STEP_SHEET = "Step";
+
     @DataProvider(name = "loginData")
     public Object[][] getLoginData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", "Login");
+        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", DATA_SHEET);
         int rowCount = excel.getRowCount();
         Object[][] data = new Object[rowCount - 1][7];
 
@@ -48,7 +51,7 @@ public class User_Login_Test extends Base_Test {
         User_Login_Action loginActions = new User_Login_Action(Driver_Manager.getDriver());
 
         try {
-            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", "Step");
+            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", STEP_SHEET);
             int rowCount = excelSteps.getRowCount();
 
             for (int i = 1; i < rowCount; i++) {
@@ -90,8 +93,12 @@ public class User_Login_Test extends Base_Test {
                 }
             }
         } catch (Exception e) {
+            String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(), "testLogin_Exception", "LoginTest");
+            Extend_Report.attachScreenshot(screenshotPath);
             baseAction.handleTestException(e, description);
             throw e;
+        } finally {
+            Extend_Report.endTest();
         }
     }
 }
