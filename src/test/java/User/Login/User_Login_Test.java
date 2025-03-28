@@ -61,8 +61,7 @@ public class User_Login_Test extends Base_Test {
 
                     case "navigate":
                         String url_user = ConfigUtil.getProperty("url_user");
-                        url_user = baseAction.convertLocalhostLink(url_user);
-                        Driver_Manager.getDriver().get(url_user);
+                        baseAction.navigate(url_user);
                         Extend_Report.logInfo("Điều hướng đến " + url_user);
                         break;
 
@@ -82,6 +81,7 @@ public class User_Login_Test extends Base_Test {
                     case "verifylink":
                         baseAction.handleVerification(loginActions.verifyLink(link), "link", link);
                         break;
+
                     case "close":
                         Extend_Report.logInfo("Đóng trình duyệt...");
                         break;
