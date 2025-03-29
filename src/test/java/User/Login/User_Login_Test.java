@@ -1,107 +1,114 @@
 package User.Login;
 
 import java.io.IOException;
-import java.util.List;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import Base.*;
-
 import Driver.Driver_Manager;
-import User.Login.User_Login_Action;
 import Utils.ConfigUtil;
 import Utils.Excel_Util;
 import Utils.ScreenShotUtil;
 import Report.Extend_Report;
-
-@SuppressWarnings("unused")
+import User.Login.User_Login_Data;
 
 public class User_Login_Test extends Base_Test {
-
+    private Base_Action baseAction;
+    private User_Login_Action loginAction;
     private static final String DATA_SHEET = "Login";
     private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "loginData")
     public Object[][] getLoginData() throws IOException, InvalidFormatException {
-        Excel_Util excelUtil = new Excel_Util(Base_Constant.USER_DATA_FILE, DATA_SHEET);
-        int rowCount = excelUtil.getRowCount();
-        int colCount = 8;
-
-        Object[][] data = new Object[rowCount - 1][colCount];
+        Excel_Util excel = new Excel_Util(Base_Constant.USER_DATA_FILE, DATA_SHEET);
+        int rowCount = excel.getRowCount();
+        
+        Object[][] data = new Object[rowCount - 1][1];
         for (int i = 1; i < rowCount; i++) {
-            data[i - 1][0] = excelUtil.getCellData(i, "Email");
-            data[i - 1][1] = excelUtil.getCellData(i, "Password");
-            data[i - 1][2] = excelUtil.getCellData(i, "Result");
-            data[i - 1][3] = excelUtil.getCellData(i, "Title");
-            data[i - 1][4] = excelUtil.getCellData(i, "Link");
-            data[i - 1][5] = excelUtil.getCellData(i, "Description");
-            data[i - 1][6] = excelUtil.getCellData(i, "TestType");
+            data[i-1][0] = new User_Login_Data(
+                excel.getCellData(i, "Email"),
+                excel.getCellData(i, "Password"),
+                excel.getCellData(i, "Result"),
+                excel.getCellData(i, "Title"),
+                excel.getCellData(i, "Link"),
+                excel.getCellData(i, "Description"),
+                excel.getCellData(i, "TestType")
+            );
         }
         return data;
     }
 
     @Test(dataProvider = "loginData", groups = { "Success", "Fail" })
-    public void testLogin(String email, String password, String result, String title, String link, String description,
-            String testType)
-            throws Exception {
-
-        String category = testType.equalsIgnoreCase("Fail") ? "Login_Data_Fail" : "Login_Data_Pass";
-        Extend_Report.startTest("Login Test - " + description, category);
-
-        Base_Action baseAction = new Base_Action(Driver_Manager.getDriver());
-        User_Login_Action loginActions = new User_Login_Action(Driver_Manager.getDriver());
+    public void testLogin(User_Login_Data data) {
+        baseAction = new Base_Action(Driver_Manager.getDriver());
+        loginAction = new User_Login_Action(Driver_Manager.getDriver());
 
         try {
+            String category = data.getTestType().equalsIgnoreCase("Fail") ? "Login_Data_Fail" : "Login_Data_Pass";
+            Extend_Report.startTest("Login Test - " + data.getDescription(), category);
+
             Excel_Util excelSteps = new Excel_Util(Base_Constant.STEP_FILE, STEP_SHEET);
-            int rowCount = excelSteps.getRowCount();
+            executeTestSteps(excelSteps, data);
 
-            for (int i = 1; i < rowCount; i++) {
-                String action = excelSteps.getCellData(i, "Action Keyword");
-
-                switch (action.toLowerCase()) {
-                    case "open":
-                        Extend_Report.logInfo("Mở trình duyệt...");
-                        break;
-
-                    case "navigate":
-                        String url_user = ConfigUtil.getProperty("url_user");
-                        baseAction.navigate(url_user);
-                        Extend_Report.logInfo("Điều hướng đến " + url_user);
-                        break;
-
-                    case "action":
-                        Extend_Report.logInfo("Thực hiện test case: " + description);
-                        loginActions.login(email, password);
-                        break;
-
-                    case "verifynotion":
-                        baseAction.handleVerification(baseAction.verifyNotion(result), "thông báo", result);
-                        break;
-
-                    case "verifytitle":
-                        baseAction.handleVerification(baseAction.verifyTitle(title), "tiêu đề", title);
-                        break;
-
-                    case "verifylink":
-                        baseAction.handleVerification(baseAction.verifyLink(link), "link", link);
-                        break;
-
-                    case "close":
-                        Extend_Report.logInfo("Đóng trình duyệt...");
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Hành động chưa xác định: " + action);
-                }
-            }
         } catch (Exception e) {
-            String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(), "testLogin_Exception",
-                    "LoginTest");
-            Extend_Report.attachScreenshot(screenshotPath);
-            baseAction.handleTestException(e, description);
-            throw e;
+            handleTestException(e, data);
         } finally {
             Extend_Report.endTest();
         }
     }
-}
+
+    private void executeTestSteps(Excel_Util excelSteps, User_Login_Data data) throws Exception {
+        int rowCount = excelSteps.getRowCount();
+
+        for (int i = 1; i < rowCount; i++) {
+            String action = excelSteps.getCellData(i, "Action Keyword");
+            
+            switch (action.toLowerCase()) {
+                case "open":
+                    Extend_Report.logInfo("Mở trình duyệt...");
+                    break;
+
+                case "navigate":
+                    String url_user = ConfigUtil.getProperty("url_user");
+                    baseAction.navigate(url_user);
+                    Extend_Report.logInfo("Điều hướng đến " + url_user);
+                    break;
+
+                case "action":
+                    Extend_Report.logInfo("Thực hiện test case: " + data.getDescription());
+                    loginAction.login(data.getEmail(), data.getPassword());
+                    break;
+
+                case "verifynotion":
+                    baseAction.handleVerification(baseAction.verifyNotion(data.getResult()),  "thông báo", data.getResult());
+                    break;
+
+                case "verifytitle":
+                    baseAction.handleVerification(baseAction.verifyTitle(data.getTitle()), "tiêu đề", data.getTitle());
+                    break;
+
+                case "verifylink":
+                    baseAction.handleVerification(baseAction.verifyLink(data.getLink()), "link", data.getLink());
+                    break;
+
+                case "close":
+                    Extend_Report.logInfo("Đóng trình duyệt...");
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("Hành động chưa xác định: " + action);
+            }
+        }
+    }
+
+    private void handleTestException(Exception e, User_Login_Data data) {
+        try {
+            String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(), "testLogin_Exception", "LoginTest");
+            Extend_Report.attachScreenshot(screenshotPath);
+            baseAction.handleTestException(e, data.getDescription());
+        } catch (Exception ex) {
+            System.out.println("Lỗi khi xử lý exception: " + ex.getMessage());
+        }
+    }
+} 
