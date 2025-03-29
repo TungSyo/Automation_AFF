@@ -17,14 +17,12 @@ import Report.Extend_Report;
 
 public class Forgot_Pass_Test extends Base_Test {
 
-    private static final String DATA_FILE = "src/test/resources/data/User_Data.xlsx";
-    private static final String STEP_FILE = "src/test/resources/step/Step.xlsx";
     private static final String DATA_SHEET = "ForgotPass";
     private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "forgotpassData")
     public Object[][] getForgotPassData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util(DATA_FILE, DATA_SHEET);
+        Excel_Util excel = new Excel_Util(Base_Constant.USER_DATA_FILE, DATA_SHEET);
         int rowCount = excel.getRowCount();
         int colCount = 9;
 
@@ -57,7 +55,7 @@ public class Forgot_Pass_Test extends Base_Test {
         Forgot_Pass_Action forgotpassActions = new Forgot_Pass_Action(Driver_Manager.getDriver());
 
         try {
-            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", STEP_SHEET);
+            Excel_Util excelSteps = new Excel_Util(Base_Constant.STEP_FILE, STEP_SHEET);
 
             int rowCount = excelSteps.getRowCount();
 
