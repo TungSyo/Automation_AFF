@@ -19,15 +19,19 @@ import Report.Extend_Report;
 @SuppressWarnings("unused")
 
 public class Search_Test extends Base_Test {
+
+    private static final String DATA_FILE = "src/test/resources/data/User_Data.xlsx";
     private static final String DATA_SHEET = "Search";
     private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "searchData")
     public Object[][] getSearchData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", DATA_SHEET);
+        Excel_Util excel = new Excel_Util(DATA_FILE, DATA_SHEET);
+        
         int rowCount = excel.getRowCount();
-        Object[][] data = new Object[rowCount - 1][7];
+        int colCount = 7;
 
+        Object[][] data = new Object[rowCount - 1][colCount];
         for (int i = 1; i < rowCount; i++) {
             data[i - 1][0] = excel.getCellData(i, "Search");
             data[i - 1][1] = excel.getCellData(i, "Result");
@@ -36,7 +40,6 @@ public class Search_Test extends Base_Test {
             data[i - 1][5] = excel.getCellData(i, "Description");
             data[i - 1][6] = excel.getCellData(i, "TestType");
         }
-
         return data;
     }
 
@@ -64,8 +67,7 @@ public class Search_Test extends Base_Test {
 
                     case "navigate":
                         String url_user = ConfigUtil.getProperty("url_user");
-                        url_user = baseAction.convertLocalhostLink(url_user);
-                        Driver_Manager.getDriver().get(url_user);
+                        baseAction.navigate(url_user);
                         Extend_Report.logInfo("Điều hướng đến " + url_user);
                         break;
 
@@ -75,15 +77,15 @@ public class Search_Test extends Base_Test {
                         break;
 
                     case "verifynotion":
-                        baseAction.handleVerification(searchActions.verifyNotion(result), "thông báo", result);
+                        baseAction.handleVerification(baseAction.verifyNotion(result), "thông báo", result);
                         break;
 
                     case "verifytitle":
-                        baseAction.handleVerification(searchActions.verifyTitle(title), "tiêu đề", title);
+                        baseAction.handleVerification(baseAction.verifyTitle(title), "tiêu đề", title);
                         break;
 
                     case "verifylink":
-                        baseAction.handleVerification(searchActions.verifyLink(link), "link", link);
+                        baseAction.handleVerification(baseAction.verifyLink(link), "link", link);
                         break;
                     case "close":
                         Extend_Report.logInfo("Đóng trình duyệt...");
@@ -93,7 +95,8 @@ public class Search_Test extends Base_Test {
                 }
             }
         } catch (Exception e) {
-            String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(), "testSearch_Exception", "SearchTest");
+            String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(), "testSearch_Exception",
+                    "SearchTest");
             Extend_Report.attachScreenshot(screenshotPath);
             baseAction.handleTestException(e, description);
             throw e;

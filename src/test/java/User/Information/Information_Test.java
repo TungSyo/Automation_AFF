@@ -19,15 +19,17 @@ import Report.Extend_Report;
 
 public class Information_Test extends Base_Test {
 
+    private static final String DATA_FILE = "src/test/resources/data/User_Data.xlsx";
     private static final String DATA_SHEET = "Information";
     private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "informationData")
     public Object[][] getInformationData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", DATA_SHEET);
+        Excel_Util excel = new Excel_Util(DATA_FILE, DATA_SHEET);
         int rowCount = excel.getRowCount();
-        Object[][] data = new Object[rowCount - 1][15];
+        int colCount = 15;
 
+        Object[][] data = new Object[rowCount - 1][colCount];
         for (int i = 1; i < rowCount; i++) {
             data[i - 1][0] = excel.getCellData(i, "Name");
             data[i - 1][1] = excel.getCellData(i, "CMND");
@@ -94,15 +96,15 @@ public class Information_Test extends Base_Test {
                         break;
 
                     case "verifynotion":
-                        baseAction.handleVerification(inforActions.verifyNotion(result), "thông báo", result);
+                        baseAction.handleVerification(baseAction.verifyNotion(result), "thông báo", result);
                         break;
 
                     case "verifytitle":
-                        baseAction.handleVerification(inforActions.verifyTitle(title), "tiêu đề", title);
+                        baseAction.handleVerification(baseAction.verifyTitle(title), "tiêu đề", title);
                         break;
 
                     case "verifylink":
-                        baseAction.handleVerification(inforActions.verifyLink(link), "link", link);
+                        baseAction.handleVerification(baseAction.verifyLink(link), "link", link);
                         break;
                     case "close":
                         Extend_Report.logInfo("Đóng trình duyệt...");

@@ -1,12 +1,14 @@
 package User.Login;
 
 import java.io.IOException;
+import java.util.List;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import Base.Base_Action;
 import Base.Base_Test;
+
 import Driver.Driver_Manager;
 import User.Login.User_Login_Action;
 import Utils.ConfigUtil;
@@ -18,25 +20,26 @@ import Report.Extend_Report;
 
 public class User_Login_Test extends Base_Test {
 
+    private static final String DATA_FILE = "src/test/resources/data/User_Data.xlsx";
     private static final String DATA_SHEET = "Login";
     private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "loginData")
     public Object[][] getLoginData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", DATA_SHEET);
-        int rowCount = excel.getRowCount();
-        Object[][] data = new Object[rowCount - 1][7];
+        Excel_Util excelUtil = new Excel_Util(DATA_FILE, DATA_SHEET);
+        int rowCount = excelUtil.getRowCount();
+        int colCount = 8;
 
+        Object[][] data = new Object[rowCount - 1][colCount];
         for (int i = 1; i < rowCount; i++) {
-            data[i - 1][0] = excel.getCellData(i, "Email");
-            data[i - 1][1] = excel.getCellData(i, "Password");
-            data[i - 1][2] = excel.getCellData(i, "Result");
-            data[i - 1][3] = excel.getCellData(i, "Title");
-            data[i - 1][4] = excel.getCellData(i, "Link");
-            data[i - 1][5] = excel.getCellData(i, "Description");
-            data[i - 1][6] = excel.getCellData(i, "TestType");
+            data[i - 1][0] = excelUtil.getCellData(i, "Email");
+            data[i - 1][1] = excelUtil.getCellData(i, "Password");
+            data[i - 1][2] = excelUtil.getCellData(i, "Result");
+            data[i - 1][3] = excelUtil.getCellData(i, "Title");
+            data[i - 1][4] = excelUtil.getCellData(i, "Link");
+            data[i - 1][5] = excelUtil.getCellData(i, "Description");
+            data[i - 1][6] = excelUtil.getCellData(i, "TestType");
         }
-
         return data;
     }
 
@@ -74,15 +77,15 @@ public class User_Login_Test extends Base_Test {
                         break;
 
                     case "verifynotion":
-                        baseAction.handleVerification(loginActions.verifyNotion(result), "thông báo", result);
+                        baseAction.handleVerification(baseAction.verifyNotion(result), "thông báo", result);
                         break;
 
                     case "verifytitle":
-                        baseAction.handleVerification(loginActions.verifyTitle(title), "tiêu đề", title);
+                        baseAction.handleVerification(baseAction.verifyTitle(title), "tiêu đề", title);
                         break;
 
                     case "verifylink":
-                        baseAction.handleVerification(loginActions.verifyLink(link), "link", link);
+                        baseAction.handleVerification(baseAction.verifyLink(link), "link", link);
                         break;
 
                     case "close":
@@ -93,7 +96,8 @@ public class User_Login_Test extends Base_Test {
                 }
             }
         } catch (Exception e) {
-            String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(), "testLogin_Exception", "LoginTest");
+            String screenshotPath = ScreenShotUtil.captureScreenshot(Driver_Manager.getDriver(), "testLogin_Exception",
+                    "LoginTest");
             Extend_Report.attachScreenshot(screenshotPath);
             baseAction.handleTestException(e, description);
             throw e;

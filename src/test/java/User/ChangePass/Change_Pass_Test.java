@@ -17,14 +17,17 @@ import Report.Extend_Report;
 
 public class Change_Pass_Test extends Base_Test {
 
+    private static final String DATA_FILE = "src/test/resources/data/User_Data.xlsx";
     private static final String DATA_SHEET = "ChangePass";
     private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "changepassData")
     public Object[][] getChangePassData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", DATA_SHEET);
+        Excel_Util excel = new Excel_Util(DATA_FILE, DATA_SHEET);
         int rowCount = excel.getRowCount();
-        Object[][] data = new Object[rowCount - 1][8];
+        int colCount = 8;
+
+        Object[][] data = new Object[rowCount - 1][colCount];
 
         for (int i = 1; i < rowCount; i++) {
             data[i - 1][0] = excel.getCellData(i, "Email");
@@ -79,15 +82,15 @@ public class Change_Pass_Test extends Base_Test {
                         break;
 
                     case "verifynotion":
-                        baseAction.handleVerification(changepassActions.verifyNotion(result), "thông báo", result);
+                        baseAction.handleVerification(baseAction.verifyNotion(result), "thông báo", result);
                         break;
 
                     case "verifytitle":
-                        baseAction.handleVerification(changepassActions.verifyTitle(title), "tiêu đề", title);
+                        baseAction.handleVerification(baseAction.verifyTitle(title), "tiêu đề", title);
                         break;
 
                     case "verifylink":
-                        baseAction.handleVerification(changepassActions.verifyLink(link), "link", link);
+                        baseAction.handleVerification(baseAction.verifyLink(link), "link", link);
                         break;
                     case "close":
                         Extend_Report.logInfo("Đóng trình duyệt...");

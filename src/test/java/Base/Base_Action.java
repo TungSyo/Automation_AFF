@@ -1,8 +1,19 @@
 package Base;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -63,16 +74,16 @@ public class Base_Action {
                     sleep(300);
                     element.click();
                     sleep(200);
-                    
+
                     element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
                     sleep(200);
-                    
+
                     element.sendKeys(Keys.BACK_SPACE);
                     sleep(300);
-                    
+
                     for (char c : text.toCharArray()) {
                          element.sendKeys(String.valueOf(c));
-                         sleep(100 + (int)(Math.random() * 200));
+                         sleep(100 + (int) (Math.random() * 200));
                     }
                     sleep(500);
                }
@@ -91,4 +102,55 @@ public class Base_Action {
           return expectedLink;
      }
 
+     public boolean verifyNotion(String expectedText) {
+          WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+          
+          try {
+               WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//*[normalize-space(text())='" + expectedText + "']")));
+               if (element != null && element.isDisplayed()) {
+                    return true;
+               }
+          } catch (Exception e) {
+               try {
+                    List<WebElement> allElements = wait.until(ExpectedConditions
+                         .presenceOfAllElementsLocatedBy(By.xpath("//*[contains(text(), '" + expectedText + "')]")));
+                    for (WebElement element : allElements) {
+                         String elementText = element.getText().trim();
+                         if (!elementText.isEmpty() && elementText.contains(expectedText)) {
+                              return true;
+                         }
+                    }
+               } catch (Exception ex) {
+                    return false;
+               }
+          }
+          return false;
+     }
+
+     public boolean verifyLink(String expectedLink) {
+          String currentUrl = driver.getCurrentUrl();
+
+          if (expectedLink.contains("host.docker.internal")) {
+               expectedLink = expectedLink.replace("host.docker.internal", "localhost");
+          }
+          if (currentUrl.contains("host.docker.internal")) {
+               currentUrl = currentUrl.replace("host.docker.internal", "localhost");
+          }
+
+          String decodedExpected = URLDecoder.decode(expectedLink.trim(), StandardCharsets.UTF_8);
+          String decodedActual = URLDecoder.decode(currentUrl.trim(), StandardCharsets.UTF_8);
+
+          System.out.println("[DEBUG] Expected URL: " + decodedExpected);
+          System.out.println("[DEBUG] Actual URL: " + decodedActual);
+
+          return decodedActual.equalsIgnoreCase(decodedExpected);
+     }
+
+     public boolean verifyTitle(String expectedTitle) {
+          String actualTitle = driver.getTitle();
+          System.out.println("[DEBUG] Expected Title: " + expectedTitle);
+          System.out.println("[DEBUG] Actual Title: " + actualTitle);
+          return actualTitle.equals(expectedTitle);
+     }
 }

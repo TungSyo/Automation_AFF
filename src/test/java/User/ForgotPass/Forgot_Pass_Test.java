@@ -16,15 +16,18 @@ import Report.Extend_Report;
 @SuppressWarnings("unused")
 
 public class Forgot_Pass_Test extends Base_Test {
+
+    private static final String DATA_FILE = "src/test/resources/data/User_Data.xlsx";
     private static final String DATA_SHEET = "ForgotPass";
     private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "forgotpassData")
     public Object[][] getForgotPassData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", DATA_SHEET);
+        Excel_Util excel = new Excel_Util(DATA_FILE, DATA_SHEET);
         int rowCount = excel.getRowCount();
-        Object[][] data = new Object[rowCount - 1][9];
+        int colCount = 9;
 
+        Object[][] data = new Object[rowCount - 1][colCount];
         for (int i = 1; i < rowCount; i++) {
             data[i - 1][0] = excel.getCellData(i, "Email");
             data[i - 1][1] = excel.getCellData(i, "NewPass");
@@ -77,15 +80,15 @@ public class Forgot_Pass_Test extends Base_Test {
                         break;
 
                     case "verifynotion":
-                        baseAction.handleVerification(forgotpassActions.verifyNotion(result), "thông báo", result);
+                        baseAction.handleVerification(baseAction.verifyNotion(result), "thông báo", result);
                         break;
 
                     case "verifytitle":
-                        baseAction.handleVerification(forgotpassActions.verifyTitle(title), "tiêu đề", title);
+                        baseAction.handleVerification(baseAction.verifyTitle(title), "tiêu đề", title);
                         break;
 
                     case "verifylink":
-                        baseAction.handleVerification(forgotpassActions.verifyLink(link), "link", link);
+                        baseAction.handleVerification(baseAction.verifyLink(link), "link", link);
                         break;
                     case "close":
                         Extend_Report.logInfo("Đóng trình duyệt...");

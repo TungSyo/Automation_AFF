@@ -17,15 +17,17 @@ import Report.Extend_Report;
 import Utils.ScreenShotUtil;
 @SuppressWarnings("unused")
 public class Register_Test extends Base_Test {
+    private static final String DATA_FILE = "src/test/resources/data/User_Data.xlsx";
     private static final String DATA_SHEET = "Register";
     private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "registerData")
     public Object[][] getRegisterData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", DATA_SHEET);
+        Excel_Util excel = new Excel_Util(DATA_FILE, DATA_SHEET);
         int rowCount = excel.getRowCount();
-        Object[][] data = new Object[rowCount - 1][20];
-
+        int colCount = 20;
+        
+        Object[][] data = new Object[rowCount - 1][colCount];
         for (int i = 1; i < rowCount; i++) {
             data[i - 1][0] = excel.getCellData(i, "Name");
             data[i - 1][1] = excel.getCellData(i, "Sdt");
@@ -77,8 +79,7 @@ public class Register_Test extends Base_Test {
 
                     case "navigate":
                         String url_user = ConfigUtil.getProperty("url_user");
-                        url_user = baseAction.convertLocalhostLink(url_user);
-                        Driver_Manager.getDriver().get(url_user);
+                        baseAction.navigate(url_user);
                         Extend_Report.logInfo("Điều hướng đến " + url_user);
                         break;
 
@@ -89,15 +90,15 @@ public class Register_Test extends Base_Test {
                         break;
 
                     case "verifynotion":
-                        baseAction.handleVerification(registerActions.verifyNotion(result), "thông báo", result);
+                        baseAction.handleVerification(baseAction.verifyNotion(result), "thông báo", result);
                         break;
 
                     case "verifytitle":
-                        baseAction.handleVerification(registerActions.verifyTitle(title), "tiêu đề", title);
+                        baseAction.handleVerification(baseAction.verifyTitle(title), "tiêu đề", title);
                         break;
 
                     case "verifylink":
-                        baseAction.handleVerification(registerActions.verifyLink(link), "link", link);
+                        baseAction.handleVerification(baseAction.verifyLink(link), "link", link);
                         break;
                     case "close":
                         Extend_Report.logInfo("Đóng trình duyệt...");
