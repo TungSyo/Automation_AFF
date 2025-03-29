@@ -12,7 +12,7 @@ import Utils.ConfigUtil;
 import Utils.Excel_Util;
 import Utils.ScreenShotUtil;
 import Report.Extend_Report;
-
+@SuppressWarnings("unused")
 public class Cart_Update_Test extends Base_Test {
     private Base_Action baseAction;
     private Cart_Update_Action cartUpdateActions;

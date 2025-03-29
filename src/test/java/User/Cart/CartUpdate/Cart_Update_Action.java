@@ -34,7 +34,7 @@ public class Cart_Update_Action {
     public void updateProductQuantity(String Quanlity) {
         try {
             if (!scart_Page.getProductQuantity().isEmpty()) {
-                String currentQuantity = scart_Page.getProductQuantity().get(0).getAttribute("value");
+                String currentQuantity = scart_Page.getProductQuantity().get(0).getDomAttribute("value");
                 int currentQty = (int) Math.round(Double.parseDouble(currentQuantity));
                 int targetQty = (int) Math.round(Double.parseDouble(Quanlity));
 
