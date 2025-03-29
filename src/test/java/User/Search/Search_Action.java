@@ -42,7 +42,7 @@ public class Search_Action {
 	}
 
 	public void searchProduct(String search) {
-		enterText(searchPage.txtSearch, search);
-		clickButton(searchPage.btnSearch);
+		enterText(searchPage.getTxtSearch(), search);
+		clickButton(searchPage.getBtnSearch());
 	}
 }

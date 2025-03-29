@@ -47,23 +47,23 @@ public class Information_Action {
 		baseAction.clickElement(element);
 	}
 
-	public void updateInfor(String name, String cmnd, String city, String district, String ward, String location,
+	public void updateInformation(String name, String cmnd, String city, String district, String ward, String location,
 			String mst, String date, String bank, String stk) {
 		
-		clickButton(basePage.btnAccount_2);
-		clickButton(inforPage.linkInfor);
-		clickButton(inforPage.btnUpdate_1);
-		enterText(inforPage.txtName, name);
-		enterText(inforPage.txtCMND, cmnd);
-		enterText(inforPage.txtCity, city);
-		enterText(inforPage.txtDistrict, district);
-		enterText(inforPage.txtWard, ward);
-		enterText(inforPage.txtLocation, location);
-		enterText(inforPage.txtMst, mst);
-		enterText(inforPage.txtDate, date);
-		enterText(inforPage.txtBank, bank);
-		enterText(inforPage.txtStk, stk);
-		clickButton(inforPage.btnUpdate_2);
+		clickButton(basePage.getBtnAccount_2());
+		clickButton(inforPage.getLinkInfor());
+		clickButton(inforPage.getBtnUpdate_1());
+		enterText(inforPage.getTxtName(), name);
+		enterText(inforPage.getTxtCmnd(), cmnd);
+		enterText(inforPage.getTxtCity(), city);
+		enterText(inforPage.getTxtDistrict(), district);
+		enterText(inforPage.getTxtWard(), ward);
+		enterText(inforPage.getTxtLocation(), location);
+		enterText(inforPage.getTxtMst(), mst);
+		enterText(inforPage.getTxtDate(), date);
+		enterText(inforPage.getTxtBank(), bank);
+		enterText(inforPage.getTxtStk(), stk);
+		clickButton(inforPage.getBtnUpdate_2());
 	}
 
 }

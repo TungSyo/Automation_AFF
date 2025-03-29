@@ -56,7 +56,7 @@ public class Login_Google {
             System.out.println("Tiêu đề trang: " + driver.getTitle());
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-            wait.until(ExpectedConditions.elementToBeClickable(basePage.btnLoginEmail)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(basePage.getBtnLoginEmail())).click();
         } catch (Exception e) {
             System.err.println("Lỗi khi mở tab mới và truy cập Google: " + e.getMessage());
         }
@@ -89,7 +89,7 @@ public class Login_Google {
     public void newaccount() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-            wait.until(ExpectedConditions.elementToBeClickable(basePage.btnNewAccount)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(basePage.getBtnNewAccount())).click();
         } catch (Exception e) {
             System.err.println("Lỗi khi chuyển về tab ban đầu: " + e.getMessage());
         }

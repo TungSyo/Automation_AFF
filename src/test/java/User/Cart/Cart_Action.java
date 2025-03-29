@@ -51,8 +51,8 @@ public class Cart_Action {
 	}
 
 	public void clickAddToCart(int index) {
-		if (index > 0 && index <= scart_Page.addToCartButtons.size()) {
-			scart_Page.addToCartButtons.get(index - 1).click();
+		if (index > 0 && index <= scart_Page.getAddToCartButtons().size()) {
+			scart_Page.getAddToCartButtons().get(index - 1).click();
 		} else {
 			throw new IndexOutOfBoundsException("Không tìm thấy sản phẩm ở vị trí: " + index);
 		}
@@ -65,16 +65,16 @@ public class Cart_Action {
 	}
 
 	public void clickRemoveFromCart(int productIndex) {
-		if (productIndex > 0 && productIndex <= scart_Page.deleteButtons.size()) {
-			scart_Page.deleteButtons.get(productIndex - 1).click();
+		if (productIndex > 0 && productIndex <= scart_Page.getDeleteButtons().size()) {
+			scart_Page.getDeleteButtons().get(productIndex - 1).click();
 		} else {
 			throw new IndexOutOfBoundsException("Product at index " + productIndex + " does not exist");
 		}
 	}
 
 	public void clickRemoveAllFromCart() {
-		while (!scart_Page.deleteButtons.isEmpty()) {
-			scart_Page.deleteButtons.get(0).click();
+		while (!scart_Page.getDeleteButtons().isEmpty()) {
+			scart_Page.getDeleteButtons().get(0).click();
 		}
 	}
 
@@ -82,8 +82,8 @@ public class Cart_Action {
 		double unitPrice = 1_000_000;
 		double totalWebPrice = 0;
 	
-		for (int i = 0; i < scart_Page.productPrice.size(); i++) {
-			String priceText = scart_Page.productPrice.get(i).getText().replaceAll("[^0-9]", "");
+		for (int i = 0; i < scart_Page.getProductPrice().size(); i++) {
+			String priceText = scart_Page.getProductPrice().get(i).getText().replaceAll("[^0-9]", "");
 			double webPrice = Double.parseDouble(priceText);
 			totalWebPrice += webPrice;
 		}
@@ -99,26 +99,26 @@ public class Cart_Action {
 	public void SCartToOrder(String typecase) {
 		switch (typecase) {
 			case "One":
-				clickButton(basePage.linkProduct);
+				clickButton(basePage.getLinkProduct());
 				addProductToCart(1, 2, 3);
-				clickButton(scart_Page.btnCart);
-				clickButton(scart_Page.selectCheckboxDongy);
-				clickButton(scart_Page.btnToThanhToan);
+				clickButton(scart_Page.getBtnCart());
+				clickButton(scart_Page.getSelectCheckboxDongy());
+				clickButton(scart_Page.getBtnToThanhToan());
 				break;
 			case "Two":
-				clickButton(basePage.linkProduct);
+				clickButton(basePage.getLinkProduct());
 				addProductToCart(1, 2, 3);
-				clickButton(scart_Page.btnCart);
-				clickButton(scart_Page.selectAllCheckbox);
-				clickButton(scart_Page.btnToThanhToan);
+				clickButton(scart_Page.getBtnCart());
+				clickButton(scart_Page.getSelectAllCheckbox());
+				clickButton(scart_Page.getBtnToThanhToan());
 				break;
 			case "Three":
-				clickButton(basePage.linkProduct);
+				clickButton(basePage.getLinkProduct());
 				addProductToCart(1, 2, 3);
-				clickButton(scart_Page.btnCart);
-				clickButton(scart_Page.selectAllCheckbox);
-				clickButton(scart_Page.selectCheckboxDongy);
-				clickButton(scart_Page.btnToThanhToan);
+				clickButton(scart_Page.getBtnCart());
+				clickButton(scart_Page.getSelectAllCheckbox());
+				clickButton(scart_Page.getSelectCheckboxDongy());
+				clickButton(scart_Page.getBtnToThanhToan());
 				break;
 			default:
 				System.out.println("Invalid typecase: " + typecase);

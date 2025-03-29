@@ -10,36 +10,46 @@ public class Forgot_Pass_Page {
 
 	// Input
 	@FindBy(xpath = "//input[contains(@id,'user')]")
-	public WebElement txtEmailForgot;
+	private WebElement txtEmailForgot;
 
 	@FindBy(xpath = "//input[contains(@placeholder,'Mật khẩu mới')]")
-	public WebElement txtNewPass;
+	private WebElement txtNewPass;
 
 	@FindBy(xpath = "//input[contains(@id,'confirmPassword')]")
-	public WebElement txtConfirmPass;
+	private WebElement txtConfirmPass;
 
 	@FindBy(xpath = "//input[contains(@id,'otp')]")
-	public WebElement txtOTP;
+	private WebElement txtOTP;
 
 	// Link
 	@FindBy(xpath = "//a[contains(.,'Quay lại đăng nhập')]")
-	public WebElement linkBackLogin;
+	private WebElement linkBackLogin;
 
 	@FindBy(xpath = "//a[@href='/resend-email-otp']")
-	public WebElement linkResendOTP;
+	private WebElement linkResendOTP;
 
 	// Button
 	@FindBy(xpath = "//span[contains(.,'Lấy mã OTP')]")
-	public WebElement btnGetOTP;
+	private WebElement btnGetOTP;
 
 	@FindBy(xpath = "//span[contains(.,'Đến trang đặt lại mật khẩu')]")
-	public WebElement btnToResetPass;
+	private WebElement btnToResetPass;
 
 	@FindBy(xpath = "//span[@class='p-button-label'][contains(.,'XÁC NHẬN')]")
-	public WebElement btnConfirm;
+	private WebElement btnConfirm;
 
 	public Forgot_Pass_Page(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+
+	public WebElement getTxtEmailForgot() { return txtEmailForgot; }
+	public WebElement getTxtNewPass() { return txtNewPass; }
+	public WebElement getTxtConfirmPass() { return txtConfirmPass; }
+	public WebElement getTxtOTP() { return txtOTP; }
+	public WebElement getLinkBackLogin() { return linkBackLogin; }
+	public WebElement getLinkResendOTP() { return linkResendOTP; }
+	public WebElement getBtnGetOTP() { return btnGetOTP; }
+	public WebElement getBtnToResetPass() { return btnToResetPass; }
+	public WebElement getBtnConfirm() { return btnConfirm; }
 }

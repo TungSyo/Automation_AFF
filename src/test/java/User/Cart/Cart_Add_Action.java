@@ -55,31 +55,31 @@ public class Cart_Add_Action {
     public void addToSCart(String typecase, String productName, String productQuantity, String productPrice) {
         switch (typecase) {
             case "One":
-                enterText(search_Page.txtSearch, productName);
-                clickButton(search_Page.btnSearch);
+                enterText(search_Page.getTxtSearch(), productName);
+                clickButton(search_Page.getBtnSearch());
                 scart_Action.addProductToCart(1);
-                clickButton(scart_Page.btnCart);
-                clickButton(scart_Page.selectAllCheckbox);
+                clickButton(scart_Page.getBtnCart());
+                clickButton(scart_Page.getSelectAllCheckbox());
                 scart_Action.checkProduct(productQuantity, productPrice);
                 break;
             case "Two":
-                enterText(search_Page.txtSearch, productName);
-                clickButton(search_Page.btnSearch);
+                enterText(search_Page.getTxtSearch(), productName);
+                clickButton(search_Page.getBtnSearch());
                 scart_Action.addProductToCart(1, 2, 3);
-                clickButton(scart_Page.btnCart);
-                clickButton(scart_Page.selectAllCheckbox);
+                clickButton(scart_Page.getBtnCart());
+                clickButton(scart_Page.getSelectAllCheckbox());
                 scart_Action.checkProduct(productQuantity, productPrice);
                 break;
             case "Three":
-                enterText(search_Page.txtSearch, productName);
-                clickButton(search_Page.btnSearch);
+                enterText(search_Page.getTxtSearch(), productName);
+                clickButton(search_Page.getBtnSearch());
                 int quantity = (int) Double.parseDouble(productQuantity);
                 for (int i = 0; i < quantity; i++) {
                     scart_Action.clickAddToCart(1);
                     baseAction.sleep(800);
                 }
-                clickButton(scart_Page.btnCart);
-                clickButton(scart_Page.selectAllCheckbox);
+                clickButton(scart_Page.getBtnCart());
+                clickButton(scart_Page.getSelectAllCheckbox());
                 scart_Action.checkProduct(productQuantity, productPrice);
                 break;
             default:

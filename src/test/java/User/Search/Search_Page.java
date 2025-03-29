@@ -10,24 +10,28 @@ public class Search_Page {
 
 	// Link
 	@FindBy(xpath = "//a[.='Trang chủ']")
-	public WebElement linkHomePage;
+	private WebElement linkHomePage;
 
 	@FindBy(xpath = "//a[.='Sản phẩm']")
-	public WebElement linkProduct;
+	private WebElement linkProduct;
 
 	// Input
 	@FindBy(xpath = "//input[@class='product__search-input ng-untouched ng-pristine ng-valid']")
-	public WebElement txtSearch;
+	private WebElement txtSearch;
 
 	// Button
 	@FindBy(xpath = "//button[@class='product__search-submit btn']")
-	public WebElement btnSearch;
+	private WebElement btnSearch;
 
 	@FindBy(xpath = "///div[@class='product__search-category']")
-	public WebElement btnCategory;
+	private WebElement btnCategory;
 
 	public Search_Page(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+
+	public WebElement getTxtSearch() { return txtSearch; }
+	public WebElement getBtnSearch() { return btnSearch; }
+	public WebElement getBtnCategory() { return btnCategory; }
 }

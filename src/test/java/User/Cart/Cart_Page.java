@@ -12,43 +12,56 @@ public class Cart_Page {
 
      
      @FindBy(xpath = "//input[contains(@ng-reflect-model,'1')]")
-     public List<WebElement> productQuantity;
+     private List<WebElement> productQuantity;
 
      @FindBy(xpath = "//tr[@class='order-total']/td")
-     public List<WebElement> productPrice;
+     private List<WebElement> productPrice;
 
      @FindBy(xpath = "//div[@class='cart-product']//a")
-     public List<WebElement> productName;
+     private List<WebElement> productName;
      
      @FindBy(xpath = "//div[@class='cart-product']//tr//button[contains(@class,'btn-minus')]")
-     public List<WebElement> minusButtons;
+     private List<WebElement> minusButtons;
 
      @FindBy(xpath = "//div[@class='cart-product']//tr//button[contains(@class,'btn-plus')]")
-     public List<WebElement> plusButtons;
+     private List<WebElement> plusButtons;
      
      @FindBy(xpath = "//button[contains(.,'Thêm vào giỏ')]")
-     public List<WebElement> addToCartButtons;
+     private List<WebElement> addToCartButtons;
 
      @FindBy(xpath = "//input[@type='checkbox']")
-     public List<WebElement> addToCartCheckboxes;
+     private List<WebElement> addToCartCheckboxes;
 
      @FindBy(xpath = "//span[@class='product-trash']")
-     public List<WebElement> deleteButtons;
+     private List<WebElement> deleteButtons;
 
      @FindBy(xpath = "(//input[@class='select-all-checkbox'])[1]")
-     public WebElement selectAllCheckbox;
+     private WebElement selectAllCheckbox;
      
      @FindBy(xpath = "(//input[contains(@class,'select-all-checkbox')])[3]")
-     public WebElement selectCheckboxDongy;
+     private WebElement selectCheckboxDongy;
      
      @FindBy(xpath = "//button[contains(.,'TIỀN HÀNG THANH TOÁN')]")
-     public WebElement btnToThanhToan;
+     private WebElement btnToThanhToan;
      
      @FindBy(xpath = "//li[contains(@class,'header__shop-icon-item header__shop-icon-item-cart')]")
-     public WebElement btnCart;
+     private WebElement btnCart;
 
      public Cart_Page(WebDriver driver){
           this.driver = driver;
           PageFactory.initElements(driver, this);
      }
+
+     public List<WebElement> getProductQuantity() { return productQuantity; }
+     public List<WebElement> getProductPrice() { return productPrice; }
+     public List<WebElement> getProductName() { return productName; }
+     public List<WebElement> getMinusButtons() { return minusButtons; }
+     public List<WebElement> getPlusButtons() { return plusButtons; }
+     public List<WebElement> getAddToCartButtons() { return addToCartButtons; }
+     public List<WebElement> getAddToCartCheckboxes() { return addToCartCheckboxes; }
+     public List<WebElement> getDeleteButtons() { return deleteButtons; }
+     public WebElement getSelectAllCheckbox() { return selectAllCheckbox; }
+     public WebElement getSelectCheckboxDongy() { return selectCheckboxDongy; }
+     public WebElement getBtnToThanhToan() { return btnToThanhToan; }
+     public WebElement getBtnCart() { return btnCart; }
 }

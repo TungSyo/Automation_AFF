@@ -11,7 +11,6 @@ import Utils.ConfigUtil;
 import Utils.Excel_Util;
 import Utils.ScreenShotUtil;
 import Report.Extend_Report;
-import User.Login.User_Login_Data;
 
 public class User_Login_Test extends Base_Test {
     private Base_Action baseAction;

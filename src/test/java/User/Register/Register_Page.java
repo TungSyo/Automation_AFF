@@ -14,67 +14,87 @@ public class Register_Page {
 
 	// Input
 	@FindBy(xpath = "//input[@placeholder='Tên người dùng']")
-	public WebElement txtName;
+	private WebElement txtName;
 
 	@FindBy(xpath = "//input[@formcontrolname='citizenIdentification']")
-	public WebElement txtCMND;
+	private WebElement txtCMND;
 
 	@FindBy(xpath = "//input[@formcontrolname='phoneNumber']")
-	public WebElement txtSdt;
+	private WebElement txtSdt;
 
 	@FindBy(xpath = "//input[@formcontrolname='password']")
-	public WebElement txtPass;
+	private WebElement txtPass;
 
 	@FindBy(xpath = "//input[@formcontrolname='email']")
-	public WebElement txtEmail;
+	private WebElement txtEmail;
 
 	@FindBy(xpath = "//input[@formcontrolname='referralCode']")
-	public WebElement txtMgt;
+	private WebElement txtMgt;
 
 	// Tỉnh - Huyện - Xã
 	@FindBy(xpath = "//input[@formcontrolname='cityName']")
-	public WebElement txtCity;
+	private WebElement txtCity;
 
 	@FindBy(xpath = "//input[@formcontrolname='districtName']")
-	public WebElement txtDistrict;
+	private WebElement txtDistrict;
 
 	@FindBy(xpath = "//input[@formcontrolname='wardName']")
-	public WebElement txtWard;
+	private WebElement txtWard;
 
 	@FindBy(xpath = "//input[@formcontrolname='address']")
-	public WebElement txtLocation;
+	private WebElement txtLocation;
 
 	// No validate
 	@FindBy(xpath = "//input[@formcontrolname='personalTaxCode']")
-	public WebElement txtMst;
+	private WebElement txtMst;
 
 	@FindBy(xpath = "//input[@formcontrolname='dateOfBirth']")
-	public WebElement txtDate;
+	private WebElement txtDate;
 
 	@FindBy(xpath = "//input[@formcontrolname='bankName']")
-	public WebElement txtBank;
+	private WebElement txtBank;
 
 	@FindBy(xpath = "//input[@formcontrolname='bankAccountNumber']")
-	public WebElement txtStk;
+	private WebElement txtStk;
 
 	@FindBy(xpath = "//input[@formcontrolname='isActive']")
-	public WebElement cbDongy;
+	private WebElement cbDongy;
 
 	@FindBy(xpath = "//button[@class='button-submit']")
-	public WebElement btnTaotk;
+	private WebElement btnTaotk;
 
 	@FindBy(xpath = "//div[@class='otp-inputs']/input[1]")
-	public WebElement txtOtp;
+	private WebElement txtOtp;
 	
 	// Button
 	@FindBy(xpath = "//a[@class='resend-link'][contains(.,'Gửi lại')]")
-	public WebElement btnResend;
+	private WebElement btnResend;
 
 	@FindBy(xpath = "//button[contains(@class,'verify-button')]")
-	public WebElement btnXacnhan;
+	private WebElement btnXacnhan;
 
 	public Register_Page(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+
+	public WebElement getTxtName() { return txtName; }
+	public WebElement getTxtCMND() { return txtCMND; }
+	public WebElement getTxtSdt() { return txtSdt; }
+	public WebElement getTxtPass() { return txtPass; }
+	public WebElement getTxtEmail() { return txtEmail; }
+	public WebElement getTxtMgt() { return txtMgt; }
+	public WebElement getTxtCity() { return txtCity; }
+	public WebElement getTxtDistrict() { return txtDistrict; }
+	public WebElement getTxtWard() { return txtWard; }
+	public WebElement getTxtLocation() { return txtLocation; }
+	public WebElement getTxtMst() { return txtMst; }
+	public WebElement getTxtDate() { return txtDate; }
+	public WebElement getTxtBank() { return txtBank; }
+	public WebElement getTxtStk() { return txtStk; }
+	public WebElement getCbDongy() { return cbDongy; }
+	public WebElement getBtnTaotk() { return btnTaotk; }
+	public WebElement getTxtOtp() { return txtOtp; }
+	public WebElement getBtnResend() { return btnResend; }
+	public WebElement getBtnXacnhan() { return btnXacnhan; }
 }

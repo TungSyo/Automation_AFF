@@ -19,19 +19,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import Base.Base_Action;
-import Base.Base_Page;
+import Base.*;
+import User.Login.*;
 
 @SuppressWarnings("unused")
 public class User_Login_Action {
 	private WebDriver driver;
 	private Base_Page basePage;
 	private Base_Action baseAction;
+	private User_Login_Page userLoginPage;
 
 	public User_Login_Action(WebDriver driver) {
 		this.driver = driver;
 		this.basePage = new Base_Page(driver);
 		this.baseAction = new Base_Action(driver);
+		this.userLoginPage = new User_Login_Page(driver);
 	}
 
 	public void enterText(WebElement element, String text) {
@@ -43,9 +45,9 @@ public class User_Login_Action {
 	}
 
 	public void login(String email, String password) {
-		clickButton(basePage.btnAccount);
-		enterText(basePage.txtUUser, email);
-		enterText(basePage.txtUPass, password);
-		clickButton(basePage.btnULogin);
+		clickButton(basePage.getBtnAccount());
+		enterText(userLoginPage.getTxtUUser(), email);
+		enterText(userLoginPage.getTxtUPass(), password);
+		clickButton(userLoginPage.getBtnULogin());
 	}
 }

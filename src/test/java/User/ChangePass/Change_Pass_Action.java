@@ -48,11 +48,11 @@ public class Change_Pass_Action {
 	}
 
 	public void changePass(String oldpass, String newpass) {
-		clickButton(basePage.btnAccount_2);
-		clickButton(changepassPage.linkChangPass);
-		enterText(changepassPage.txtOldPass, oldpass);
-		enterText(changepassPage.txtNewPass, newpass);
-		clickButton(changepassPage.btnComfirm);
+		clickButton(basePage.getBtnAccount_2());
+		clickButton(changepassPage.getLinkChangPass());
+		enterText(changepassPage.getTxtOldPass(), oldpass);
+		enterText(changepassPage.getTxtNewPass(), newpass);
+		clickButton(changepassPage.getBtnComfirm());
 	}
 
 }

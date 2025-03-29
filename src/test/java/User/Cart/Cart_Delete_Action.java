@@ -53,42 +53,42 @@ public class Cart_Delete_Action {
 	}
 
 	public void clickRemoveFromCart(int productIndex) {
-		if (productIndex > 0 && productIndex <= scart_Page.deleteButtons.size()) {
-			scart_Page.deleteButtons.get(productIndex - 1).click();
+		if (productIndex > 0 && productIndex <= scart_Page.getDeleteButtons().size()) {
+			scart_Page.getDeleteButtons().get(productIndex - 1).click();
 		} else {
 			throw new IndexOutOfBoundsException("Product at index " + productIndex + " does not exist");
 		}
 	}
 
 	public void clickRemoveAllFromCart() {
-		while (!scart_Page.deleteButtons.isEmpty()) {
-			scart_Page.deleteButtons.get(0).click();
+		while (!scart_Page.getDeleteButtons().isEmpty()) {
+			scart_Page.getDeleteButtons().get(0).click();
 		}
 	}
 
 	public void deleteProduct(String typeCase) {
 		switch (typeCase) {
 			case "One":
-				clickButton(basePage.linkProduct);
+				clickButton(basePage.getLinkProduct());
 				cartActions.addProductToCart(1, 2, 3);
-				clickButton(scart_Page.btnCart);
-				int initialProductCount = scart_Page.productName.size();
+				clickButton(scart_Page.getBtnCart());
+				int initialProductCount = scart_Page.getProductName().size();
 				System.out.println("Số lượng sản phẩm ban đầu: " + initialProductCount);
 				clickRemoveFromCart(1);
-				int finalProductCount = scart_Page.productName.size();
+				int finalProductCount = scart_Page.getProductName().size();
 				System.out.println("Số lượng sản phẩm sau khi xóa: " + finalProductCount);
 				if (finalProductCount != initialProductCount - 1) {
 					throw new AssertionError("Số lượng sản phẩm không giảm đúng sau khi xóa");
 				}
 				break;
 			case "Two":
-				clickButton(basePage.linkProduct);
+				clickButton(basePage.getLinkProduct());
 				cartActions.addProductToCart(1, 2, 3);
-				int initialCount = scart_Page.productName.size();
+				int initialCount = scart_Page.getProductName().size();
 				System.out.println("Số lượng sản phẩm ban đầu: " + initialCount);
-				clickButton(scart_Page.btnCart);
+				clickButton(scart_Page.getBtnCart());
 				clickRemoveAllFromCart();
-				int finalCount = scart_Page.productName.size();
+				int finalCount = scart_Page.getProductName().size();
 				System.out.println("Số lượng sản phẩm sau khi xóa: " + finalCount);
 				break;
 		}

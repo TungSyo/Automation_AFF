@@ -60,10 +60,10 @@ public class Forgot_Pass_Action {
 	}
 
 	public boolean getText() {
-		clickButton(forgotpassPage.btnGetOTP);
+		clickButton(forgotpassPage.getBtnGetOTP());
 
 		try {
-			clickButton(forgotpassPage.btnToResetPass);
+			clickButton(forgotpassPage.getBtnToResetPass());
 			if (isTextPresent("THIẾT LẬP MẬT KHẨU MỚI")) {
 				setShouldLoginGoogle(true);
 				return true;
@@ -110,22 +110,22 @@ public class Forgot_Pass_Action {
 		if (description.equals("Điền OTP không hợp lệ")) {
 			otpToEnter = "123456";
 		}
-		enterText(forgotpassPage.txtOTP, otpToEnter);
+		enterText(forgotpassPage.getTxtOTP(), otpToEnter);
 	}
 
 	public void forgotPass(String email, String newPass, String comfirmPass, String pop3, String description) {
-		clickButton(basePage.btnAccount);
-		clickButton(basePage.LinkForgotPassword);
-		enterText(forgotpassPage.txtEmailForgot, email);
+		clickButton(basePage.getBtnAccount());
+		clickButton(basePage.getLinkForgotPassword());
+		enterText(forgotpassPage.getTxtEmailForgot(), email);
 
 		if (!getText()) {
 			return;
 		}
 
-		enterText(forgotpassPage.txtNewPass, newPass);
-		enterText(forgotpassPage.txtConfirmPass, comfirmPass);
+		enterText(forgotpassPage.getTxtNewPass(), newPass);
+		enterText(forgotpassPage.getTxtConfirmPass(), comfirmPass);
 		getOTP(description, email, pop3);
-		clickButton(forgotpassPage.btnConfirm);
+		clickButton(forgotpassPage.getBtnConfirm());
 
 	}
 

@@ -65,7 +65,7 @@ public class Register_Action {
     }
 
     public void clickTaotk() {
-        clickButton(registerPage.btnTaotk);
+        clickButton(registerPage.getBtnTaotk());
         if (isTextPresent("XÁC THỰC OTP")) {
             setShouldLoginGoogle(true);
         } else {
@@ -74,12 +74,12 @@ public class Register_Action {
     }
 
     public void clickAccount() {
-        clickButton(basePage.btnAccount);
+        clickButton(basePage.getBtnAccount());
         baseAction.sleep(500);
 
         try {
-            if (basePage.btnLogout.isDisplayed()) {
-                clickButton(basePage.btnLogout);
+            if (basePage.getBtnLogout().isDisplayed()) {
+                clickButton(basePage.getBtnLogout());
                 baseAction.sleep(5000);
             }
         } catch (Exception e) {
@@ -87,7 +87,7 @@ public class Register_Action {
     }
 
     public void enterOTP(String otp) {
-        clickButton(registerPage.txtOtp);
+        clickButton(registerPage.getTxtOtp());
 
         List<WebElement> otpInputs = driver.findElements(By.xpath("//div[@class='otp-inputs']/input"));
         int length = Math.min(otp.length(), otpInputs.size());
@@ -109,23 +109,23 @@ public class Register_Action {
             String city, String district, String ward, String location, String mst,
             String date, String bank, String stk, String result, String pop3) {
         clickAccount();
-        clickButton(basePage.linkRegister);
+        clickButton(basePage.getLinkRegister());
         baseAction.sleep(1000);
-        enterText(registerPage.txtName, name);
-        enterText(registerPage.txtSdt, sdt);
-        enterText(registerPage.txtEmail, email);
-        enterText(registerPage.txtCMND, cmnd);
-        enterText(registerPage.txtPass, pass);
-        enterText(registerPage.txtMgt, mgt);
-        enterText(registerPage.txtCity, city);
-        enterText(registerPage.txtDistrict, district);
-        enterText(registerPage.txtWard, ward);
-        enterText(registerPage.txtLocation, location);
-        enterText(registerPage.txtMst, mst);
-        enterText(registerPage.txtDate, date);
-        enterText(registerPage.txtBank, bank);
-        enterText(registerPage.txtStk, stk);
-        clickButton(registerPage.cbDongy);
+        enterText(registerPage.getTxtName(), name);
+        enterText(registerPage.getTxtSdt(), sdt);
+        enterText(registerPage.getTxtEmail(), email);
+        enterText(registerPage.getTxtCMND(), cmnd);
+        enterText(registerPage.getTxtPass(), pass);
+        enterText(registerPage.getTxtMgt(), mgt);
+        enterText(registerPage.getTxtCity(), city);
+        enterText(registerPage.getTxtDistrict(), district);
+        enterText(registerPage.getTxtWard(), ward);
+        enterText(registerPage.getTxtLocation(), location);
+        enterText(registerPage.getTxtMst(), mst);
+        enterText(registerPage.getTxtDate(), date);
+        enterText(registerPage.getTxtBank(), bank);
+        enterText(registerPage.getTxtStk(), stk);
+        clickButton(registerPage.getCbDongy());
 
         clickTaotk();
         if (shouldLoginGoogle) {
@@ -143,7 +143,7 @@ public class Register_Action {
                 if (otp != null && !otp.isEmpty()) {
                     System.out.println("✅ OTP tìm thấy: " + otp);
                     enterOTP(otp);
-                    clickButton(registerPage.btnXacnhan);
+                    clickButton(registerPage.getBtnXacnhan());
                 } else {
                     System.err.println("⚠️ Không lấy được OTP!");
                 }

@@ -10,21 +10,26 @@ public class Change_Pass_Page {
 
 	// Link
 	@FindBy(xpath = "(//a[@class='nav-link'][contains(.,'Đổi mật khẩu')])[1]")
-	public WebElement linkChangPass;
+	private WebElement linkChangPass;
 
 	// Input
 	@FindBy(xpath = "//input[contains(@id,'oldPassword')]")
-	public WebElement txtOldPass;
+	private WebElement txtOldPass;
 
 	@FindBy(xpath = "//input[contains(@id,'newPassword')]")
-	public WebElement txtNewPass;
+	private WebElement txtNewPass;
 
 	@FindBy(xpath = "//span[@class='p-button-label'][contains(.,'XÁC NHẬN')]")
-	public WebElement btnComfirm;
+	private WebElement btnComfirm;
 		
 	public Change_Pass_Page(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+
+	public WebElement getLinkChangPass() { return linkChangPass; }
+	public WebElement getTxtOldPass() { return txtOldPass; }
+	public WebElement getTxtNewPass() { return txtNewPass; }
+	public WebElement getBtnComfirm() { return btnComfirm; }
 }
  

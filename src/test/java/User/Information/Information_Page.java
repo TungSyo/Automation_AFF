@@ -10,49 +10,63 @@ public class Information_Page {
 
 	// Link
 	@FindBy(xpath = "(//a[@class='nav-link'][contains(.,'Thông tin người dùng')])[1]")
-	public WebElement linkInfor;
+	private WebElement linkInfor;
 
 	// Button
 	@FindBy(xpath = "//button[@class='btn-update-user'][contains(.,'Cập nhật')]")
-	public WebElement btnUpdate_1;
+	private WebElement btnUpdate_1;
 
 	@FindBy(xpath = "//button[@type='submit'][contains(.,'Cập nhật')]")
-	public WebElement btnUpdate_2;
+	private WebElement btnUpdate_2;
 	
 	// Input
 	@FindBy(xpath = "//input[contains(@placeholder,'Tên người dùng')]")
-	public WebElement txtName;
+	private WebElement txtName;
 
 	@FindBy(xpath = "//input[contains(@placeholder,'CCCD/CMND')]")
-	public WebElement txtCMND;
+	private WebElement txtCMND;
 
 	@FindBy(xpath = "//input[contains(@placeholder,'Chọn tỉnh')]")
-	public WebElement txtCity;
+	private WebElement txtCity;
 
 	@FindBy(xpath = "//input[contains(@placeholder,'Chọn huyện')]")
-	public WebElement txtDistrict;
+	private WebElement txtDistrict;
 
 	@FindBy(xpath = "//input[contains(@placeholder,'Chọn xã')]")
-	public WebElement txtWard;
+	private WebElement txtWard;
 
 	@FindBy(xpath = "//input[contains(@placeholder,'Địa chỉ chi tiết')]")
-	public WebElement txtLocation;
+	private WebElement txtLocation;
 
 	@FindBy(xpath = "//input[contains(@placeholder,'Mã số thuế cá nhân')]")
-	public WebElement txtMst;
+	private WebElement txtMst;
 
 	@FindBy(xpath = "//input[contains(@type,'date')]")
-	public WebElement txtDate;
+	private WebElement txtDate;
 
 	@FindBy(xpath = "//input[contains(@placeholder,'Tên ngân hàng')]")
-	public WebElement txtBank;
+	private WebElement txtBank;
 
 	@FindBy(xpath = "//input[contains(@placeholder,'Số tài khoản')]")
-	public WebElement txtStk;
+	private WebElement txtStk;
 
 	public Information_Page(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+
+	public WebElement getLinkInfor() { return linkInfor; }
+	public WebElement getTxtName() { return txtName; }
+    public WebElement getTxtCmnd() { return txtCMND; }
+    public WebElement getTxtCity() { return txtCity; }
+    public WebElement getTxtDistrict() { return txtDistrict; }
+    public WebElement getTxtWard() { return txtWard; }
+    public WebElement getTxtLocation() { return txtLocation; }
+    public WebElement getTxtMst() { return txtMst; }
+    public WebElement getTxtDate() { return txtDate; }
+    public WebElement getTxtBank() { return txtBank; }
+    public WebElement getTxtStk() { return txtStk; }
+    public WebElement getBtnUpdate_1() { return btnUpdate_1; }
+	public WebElement getBtnUpdate_2() { return btnUpdate_2; }
 }
  
