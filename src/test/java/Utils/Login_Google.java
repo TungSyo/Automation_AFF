@@ -46,7 +46,7 @@ public class Login_Google {
             ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
             driver.switchTo().window(tabs.get(1));
 
-            String url_email = ConfigUtil.getProperty("url_email");
+            String url_email = ConfigUtil.getProperty("environment", "url_email");
             if (url_email == null || url_email.isEmpty()) {
                 throw new IllegalArgumentException("URL email không được định nghĩa trong file cấu hình.");
             }

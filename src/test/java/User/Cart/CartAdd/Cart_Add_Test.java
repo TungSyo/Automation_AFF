@@ -7,7 +7,8 @@ import org.testng.annotations.Test;
 
 import Base.*;
 import Driver.Driver_Manager;
-import User.Cart.*;
+import User.Cart.Cart.*;
+import User.Cart.CartAdd.*;
 import User.Login.*;
 import Utils.ConfigUtil;
 import Utils.Excel_Util;
@@ -15,7 +16,6 @@ import Utils.ScreenShotUtil;
 import Report.Extend_Report;
 
 @SuppressWarnings("unused")
-
 public class Cart_Add_Test extends Base_Test {
 
     private static final String DATA_SHEET = "SCartAdd";
@@ -69,7 +69,7 @@ public class Cart_Add_Test extends Base_Test {
                         break;
 
                     case "navigate":
-                        String url_user = ConfigUtil.getProperty("url_user");
+                        String url_user = ConfigUtil.getProperty("environment", "url_user");
                         baseAction.navigate(url_user);
                         Extend_Report.logInfo("Điều hướng đến " + url_user);
                         break;

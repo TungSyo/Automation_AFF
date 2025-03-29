@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import Base.*;
 import Driver.Driver_Manager;
+import User.Login.*;
 import Utils.ConfigUtil;
 import Utils.Excel_Util;
 import Utils.ScreenShotUtil;
@@ -15,6 +16,7 @@ import Report.Extend_Report;
 public class Information_Test extends Base_Test {
     private Base_Action baseAction;
     private Information_Action informationAction;
+    private User_Login_Action loginActions;
 
     private static final String DATA_SHEET = "Information";
     private static final String STEP_SHEET = "Step";
@@ -50,10 +52,10 @@ public class Information_Test extends Base_Test {
     public void testInformation(Information_Data data) {
         baseAction = new Base_Action(Driver_Manager.getDriver());
         informationAction = new Information_Action(Driver_Manager.getDriver());
+        loginActions = new User_Login_Action(Driver_Manager.getDriver());
 
         try {
-            String category = data.getTestType().equalsIgnoreCase("Fail") ? "Information_Data_Fail"
-                    : "Information_Data_Pass";
+            String category = data.getTestType().equalsIgnoreCase("Fail") ? "Information_Data_Fail": "Information_Data_Pass";
             Extend_Report.startTest("Information Test - " + data.getDescription(), category);
 
             Excel_Util excelSteps = new Excel_Util(Base_Constant.STEP_FILE, STEP_SHEET);
@@ -78,13 +80,17 @@ public class Information_Test extends Base_Test {
                     break;
 
                 case "navigate":
-                    String url_user = ConfigUtil.getProperty("url_user");
+                    String url_user = ConfigUtil.getProperty("environment", "url_user");
                     baseAction.navigate(url_user);
                     Extend_Report.logInfo("Điều hướng đến " + url_user);
                     break;
 
                 case "action":
                     Extend_Report.logInfo("Thực hiện test case: " + data.getDescription());
+                    String username = ConfigUtil.getProperty("account", "username_information");
+                    String password = ConfigUtil.getProperty("account", "password_information");
+                    loginActions.login(username, password);
+                    baseAction.sleep(1500);
                     informationAction.updateInformation(
                             data.getName(), data.getCmnd(),
                             data.getCity(), data.getDistrict(),

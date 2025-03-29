@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import Base.*;
 import Driver.Driver_Manager;
-import User.Cart.*;
+import User.Cart.Cart.*;
 import User.Login.*;
 import Utils.ConfigUtil;
 import Utils.Excel_Util;
@@ -67,15 +67,15 @@ public class Cart_Test extends Base_Test {
                         break;
 
                     case "navigate":
-                        String url_user = ConfigUtil.getProperty("url_user");
+                        String url_user = ConfigUtil.getProperty("environment", "url_user");
                         baseAction.navigate(url_user);
                         Extend_Report.logInfo("Điều hướng đến " + url_user);
                         break;
 
                     case "action":
                         Extend_Report.logInfo("Thực hiện test case: " + description);
-                        String username = ConfigUtil.getProperty("username_admin");
-                        String password = ConfigUtil.getProperty("password_admin");
+                        String username = ConfigUtil.getProperty("account", "username_admin");
+                        String password = ConfigUtil.getProperty("account", "password_admin");
                         loginActions.login(username, password);
                         cardActions.SCartToOrder(typeCase);
                         break;

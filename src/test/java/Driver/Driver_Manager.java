@@ -121,7 +121,7 @@ public class Driver_Manager {
     }
 
     private static Environment getEnvironment() {
-        String env = ConfigUtil.getProperty("TEST_ENV");
+        String env = ConfigUtil.getProperty("environment", "TEST_ENV");
     
         if ("GITHUB".equalsIgnoreCase(env)) {
             return Environment.GITHUB;

@@ -49,7 +49,6 @@ public class Information_Action {
 
 	public void updateInformation(String name, String cmnd, String city, String district, String ward, String location,
 			String mst, String date, String bank, String stk) {
-		
 		clickButton(basePage.getBtnAccount_2());
 		clickButton(inforPage.getLinkInfor());
 		clickButton(inforPage.getBtnUpdate_1());

@@ -93,7 +93,7 @@ public class Base_Action {
      }
 
      public String convertLocalhostLink(String expectedLink) {
-          String environment = ConfigUtil.getProperty("TEST_ENV");
+          String environment = ConfigUtil.getProperty("environment", "TEST_ENV");
 
           if ((environment.equalsIgnoreCase("DOCKER") || environment.equalsIgnoreCase("LINUX"))
                     && expectedLink.contains("localhost")) {

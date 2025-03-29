@@ -27,7 +27,7 @@ public class Base_Test {
     public void setUp() throws IOException {
         System.out.println("🔧 Đang thiết lập trình duyệt...");
 
-        String browserConfig = ConfigUtil.getProperty("browser");
+        String browserConfig = ConfigUtil.getProperty("environment", "browser");
         if (browserConfig == null || browserConfig.trim().isEmpty()) {
             throw new IllegalArgumentException(
                     "⚠ Lỗi: Cấu hình 'browser' không được tìm thấy hoặc để trống trong file config.properties!");

@@ -71,7 +71,7 @@ public class Forgot_Pass_Test extends Base_Test {
                     break;
 
                 case "navigate":
-                    String url_user = ConfigUtil.getProperty("url_user");
+                    String url_user = ConfigUtil.getProperty("environment", "url_user");
                     baseAction.navigate(url_user);
                     Extend_Report.logInfo("Điều hướng đến " + url_user);
                     break;

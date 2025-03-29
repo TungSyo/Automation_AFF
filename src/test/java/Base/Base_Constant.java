@@ -9,7 +9,23 @@ public class Base_Constant {
     public static final String STEP_FILE = getConfigValue("step_file", "src/test/resources/step/Step.xlsx");
 
     private static String getConfigValue(String key, String defaultValue) {
-        String value = ConfigUtil.getProperty(key);
+        String value = ConfigUtil.getProperty("environment", key);
         return value.isEmpty() ? defaultValue : value;
+    }
+
+    public enum ConfigType {
+        USER("user.properties"),
+        ADMIN("admin.properties"),
+        INFORMATION("information.properties");
+        
+        private String fileName;
+        
+        ConfigType(String fileName) {
+            this.fileName = fileName;
+        }
+        
+        public String getFileName() {
+            return fileName;
+        }
     }
 } 
