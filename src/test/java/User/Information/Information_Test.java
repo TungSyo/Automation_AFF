@@ -5,8 +5,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import Base.Base_Action;
-import Base.Base_Test;
+import Base.*;
 import Driver.Driver_Manager;
 import User.Information.*;
 import User.Login.*;
@@ -19,13 +18,12 @@ import Report.Extend_Report;
 
 public class Information_Test extends Base_Test {
 
-    private static final String DATA_FILE = "src/test/resources/data/User_Data.xlsx";
     private static final String DATA_SHEET = "Information";
     private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "informationData")
     public Object[][] getInformationData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util(DATA_FILE, DATA_SHEET);
+        Excel_Util excel = new Excel_Util(Base_Constant.USER_DATA_FILE, DATA_SHEET);
         int rowCount = excel.getRowCount();
         int colCount = 15;
 
@@ -59,7 +57,6 @@ public class Information_Test extends Base_Test {
             throws Exception {
 
         String category = testType.equalsIgnoreCase("Fail") ? "Information_Data_Fail" : "Information_Data_Pass";
-
         Extend_Report.startTest("Information Test - " + description, category);
 
         Base_Action baseAction = new Base_Action(Driver_Manager.getDriver());
@@ -67,7 +64,7 @@ public class Information_Test extends Base_Test {
         User_Login_Action loginActions = new User_Login_Action(Driver_Manager.getDriver());
 
         try {
-            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", STEP_SHEET);
+            Excel_Util excelSteps = new Excel_Util(Base_Constant.STEP_FILE, STEP_SHEET);
 
             int rowCount = excelSteps.getRowCount();
 

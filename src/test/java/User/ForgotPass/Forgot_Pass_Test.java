@@ -18,6 +18,7 @@ import Report.Extend_Report;
 public class Forgot_Pass_Test extends Base_Test {
 
     private static final String DATA_FILE = "src/test/resources/data/User_Data.xlsx";
+    private static final String STEP_FILE = "src/test/resources/step/Step.xlsx";
     private static final String DATA_SHEET = "ForgotPass";
     private static final String STEP_SHEET = "Step";
 
@@ -50,7 +51,6 @@ public class Forgot_Pass_Test extends Base_Test {
             throws Exception {
 
         String category = testType.equalsIgnoreCase("Fail") ? "ForgotPass_Data_Fail" : "ForgotPass_Data_Pass";
-
         Extend_Report.startTest("Forgot_Pass Test - " + description, category);
 
         Base_Action baseAction = new Base_Action(Driver_Manager.getDriver());

@@ -22,7 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Report.Extend_Report;
 import Utils.ConfigUtil;
-
+@SuppressWarnings("unused")
 public class Base_Action {
      protected WebDriver driver;
 

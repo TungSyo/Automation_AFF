@@ -7,8 +7,7 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.JsonSerializable.Base;
 
-import Base.Base_Action;
-import Base.Base_Test;
+import Base.*;
 import Driver.Driver_Manager;
 import User.Login.User_Login_Action;
 import Utils.ConfigUtil;
@@ -20,14 +19,13 @@ import Report.Extend_Report;
 
 public class Search_Test extends Base_Test {
 
-    private static final String DATA_FILE = "src/test/resources/data/User_Data.xlsx";
     private static final String DATA_SHEET = "Search";
     private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "searchData")
     public Object[][] getSearchData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util(DATA_FILE, DATA_SHEET);
-        
+        Excel_Util excel = new Excel_Util(Base_Constant.USER_DATA_FILE, DATA_SHEET);
+
         int rowCount = excel.getRowCount();
         int colCount = 7;
 
@@ -54,7 +52,7 @@ public class Search_Test extends Base_Test {
         Search_Action searchActions = new Search_Action(Driver_Manager.getDriver());
 
         try {
-            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", STEP_SHEET);
+            Excel_Util excelSteps = new Excel_Util(Base_Constant.STEP_FILE, STEP_SHEET);
             int rowCount = excelSteps.getRowCount();
 
             for (int i = 1; i < rowCount; i++) {

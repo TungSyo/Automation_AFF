@@ -17,13 +17,13 @@ import Report.Extend_Report;
 
 public class Change_Pass_Test extends Base_Test {
 
-    private static final String DATA_FILE = "src/test/resources/data/User_Data.xlsx";
+
     private static final String DATA_SHEET = "ChangePass";
     private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "changepassData")
     public Object[][] getChangePassData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util(DATA_FILE, DATA_SHEET);
+        Excel_Util excel = new Excel_Util(Base_Constant.USER_DATA_FILE, DATA_SHEET);
         int rowCount = excel.getRowCount();
         int colCount = 8;
 
@@ -49,7 +49,6 @@ public class Change_Pass_Test extends Base_Test {
             throws Exception {
 
         String category = testType.equalsIgnoreCase("Fail") ? "ChangePass_Data_Fail" : "ChangePass_Data_Pass";
-
         Extend_Report.startTest("Change_Pass Test - " + description, category);
 
         Base_Action baseAction = new Base_Action(Driver_Manager.getDriver());
@@ -57,7 +56,7 @@ public class Change_Pass_Test extends Base_Test {
         Change_Pass_Action changepassActions = new Change_Pass_Action(Driver_Manager.getDriver());
 
         try {
-            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", STEP_SHEET);
+            Excel_Util excelSteps = new Excel_Util(Base_Constant.STEP_FILE, STEP_SHEET);
 
             int rowCount = excelSteps.getRowCount();
 

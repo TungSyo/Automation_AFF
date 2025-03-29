@@ -7,8 +7,7 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.JsonSerializable.Base;
 
-import Base.Base_Action;
-import Base.Base_Test;
+import Base.*;
 import Driver.Driver_Manager;
 import User.Register.Register_Action;
 import Utils.ConfigUtil;
@@ -17,16 +16,15 @@ import Report.Extend_Report;
 import Utils.ScreenShotUtil;
 @SuppressWarnings("unused")
 public class Register_Test extends Base_Test {
-    private static final String DATA_FILE = "src/test/resources/data/User_Data.xlsx";
     private static final String DATA_SHEET = "Register";
     private static final String STEP_SHEET = "Step";
 
     @DataProvider(name = "registerData")
     public Object[][] getRegisterData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util(DATA_FILE, DATA_SHEET);
+        Excel_Util excel = new Excel_Util(Base_Constant.USER_DATA_FILE, DATA_SHEET);
         int rowCount = excel.getRowCount();
         int colCount = 20;
-        
+
         Object[][] data = new Object[rowCount - 1][colCount];
         for (int i = 1; i < rowCount; i++) {
             data[i - 1][0] = excel.getCellData(i, "Name");
@@ -66,7 +64,7 @@ public class Register_Test extends Base_Test {
         Register_Action registerActions = new Register_Action(Driver_Manager.getDriver());
 
         try {
-            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", STEP_SHEET);
+            Excel_Util excelSteps = new Excel_Util(Base_Constant.STEP_FILE, STEP_SHEET);
             int rowCount = excelSteps.getRowCount();
 
             for (int i = 1; i < rowCount; i++) {

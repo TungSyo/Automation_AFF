@@ -5,8 +5,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import Base.Base_Action;
-import Base.Base_Test;
+import Base.*;
 import Driver.Driver_Manager;
 import User.Cart.*;
 import User.Login.*;
@@ -24,10 +23,11 @@ public class Cart_Add_Test extends Base_Test {
 
     @DataProvider(name = "scartaddData")
     public Object[][] getSCartAddData() throws IOException, InvalidFormatException {
-        Excel_Util excel = new Excel_Util("src/test/resources/data/User_Data.xlsx", DATA_SHEET);
+        Excel_Util excel = new Excel_Util(Base_Constant.USER_DATA_FILE, DATA_SHEET);
         int rowCount = excel.getRowCount();
-        Object[][] data = new Object[rowCount - 1][9];
+        int colCount = 9;
 
+        Object[][] data = new Object[rowCount - 1][colCount];
         for (int i = 1; i < rowCount; i++) {
             data[i - 1][0] = excel.getCellData(i, "Product");
             data[i - 1][1] = excel.getCellData(i, "Quanlity");
@@ -49,7 +49,6 @@ public class Cart_Add_Test extends Base_Test {
             throws Exception {
 
         String category = testType.equalsIgnoreCase("Fail") ? "SCart_Data_Fail" : "SCart_Data_Pass";
-
         Extend_Report.startTest("SCartAdd Test - " + description, category);
 
         Base_Action baseAction = new Base_Action(Driver_Manager.getDriver());
@@ -57,7 +56,7 @@ public class Cart_Add_Test extends Base_Test {
         User_Login_Action loginActions = new User_Login_Action(Driver_Manager.getDriver());
 
         try {
-            Excel_Util excelSteps = new Excel_Util("src/test/resources/step/Step.xlsx", STEP_SHEET);
+            Excel_Util excelSteps = new Excel_Util(Base_Constant.STEP_FILE, STEP_SHEET);
 
             int rowCount = excelSteps.getRowCount();
 
@@ -81,15 +80,15 @@ public class Cart_Add_Test extends Base_Test {
                         break;
 
                     case "verifynotion":
-                        baseAction.handleVerification(cardActions.verifyNotion(result), "thông báo", result);
+                        baseAction.handleVerification(baseAction.verifyNotion(result), "thông báo", result);
                         break;
 
                     case "verifytitle":
-                        baseAction.handleVerification(cardActions.verifyTitle(title), "tiêu đề", title);
+                        baseAction.handleVerification(baseAction.verifyTitle(title), "tiêu đề", title);
                         break;
 
                     case "verifylink":
-                        baseAction.handleVerification(cardActions.verifyLink(link), "link", link);
+                        baseAction.handleVerification(baseAction.verifyLink(link), "link", link);
                         break;
                     case "close":
                         Extend_Report.logInfo("Đóng trình duyệt...");
