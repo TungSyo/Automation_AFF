@@ -17,6 +17,7 @@ public class Change_Pass_Test extends Base_Test {
     private Base_Action baseAction;
     private Change_Pass_Action changePassAction;
     private User_Login_Action loginActions;
+
     private static final String DATA_SHEET = "ChangePass";
     private static final String STEP_SHEET = "Step";
 
@@ -80,7 +81,9 @@ public class Change_Pass_Test extends Base_Test {
 
                 case "action":
                     Extend_Report.logInfo("Thực hiện test case: " + data.getDescription());
-                    loginActions.login(data.getEmail(), data.getPass());
+                    loginActions.login(
+                        data.getEmail(), 
+                        data.getPass());
                     baseAction.sleep(1500);
                     changePassAction.changePass(data.getPassOld(), data.getPassNew());
                     break;

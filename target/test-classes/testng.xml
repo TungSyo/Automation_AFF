@@ -8,16 +8,15 @@
             </run>
         </groups>
         <classes>
-           <!-- <class name="User.Register.User_Register_Test"/> -->
-            <!-- <class name="User.Login.User_Login_Test"/> -->
-            <!-- <class name="User.Login_New.User_Login_Test"/> -->
-            <!-- <class name="User.Information.User_Information_Test"/> -->
+            <class name="User.Register.Register_Test"/>
+            <class name="User.Login.User_Login_Test"/>
+            <class name="User.Information.Information_Test"/>
             <class name="User.ChangePass.Change_Pass_Test"/>
-            <!-- <class name="User.ForgotPass.ForgotPass_Test"/> -->
-            <!-- <class name="User.Cart.Cart_Test"/> -->
-            <!-- <class name="User.Cart.Cart_Add_Test"/> -->
-            <!-- <class name="User.Cart.Cart_Update_Test"/> -->
-            <!-- <class name="User.Cart.Cart_Delete_Test"/> -->
+            <class name="User.ForgotPass.ForgotPass_Test"/>
+            <class name="User.Cart.Cart_Test"/>
+            <class name="User.Cart.Cart_Add_Test"/>
+            <class name="User.Cart.Cart_Update_Test"/>
+            <class name="User.Cart.Cart_Delete_Test"/>
         </classes>
     </test>
 </suite>
