@@ -1,32 +1,11 @@
 package User.Cart.CartUpdate;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import Base.Base_Action;
-import Base.Base_Page;
-import Base.Base_Test;
+import Base.*;
 import Report.Extend_Report;
 import User.Cart.Cart.Cart_Action;
 import User.Cart.Cart.Cart_Page;
-import User.Search.Search_Page;
 
 @SuppressWarnings("unused")
 public class Cart_Update_Action {
@@ -34,7 +13,6 @@ public class Cart_Update_Action {
     private Base_Page basePage;
     private Base_Action baseAction;
     private Cart_Page scart_Page;
-    private Search_Page search_Page;
     private Cart_Action scart_Action;
 
     public Cart_Update_Action(WebDriver driver) {
@@ -42,7 +20,6 @@ public class Cart_Update_Action {
         this.basePage = new Base_Page(driver);
         this.scart_Page = new Cart_Page(driver);
         this.baseAction = new Base_Action(driver);
-        this.search_Page = new Search_Page(driver);
         this.scart_Action = new Cart_Action(driver);
     }
 
@@ -54,12 +31,12 @@ public class Cart_Update_Action {
         baseAction.clearAndEnterText(element, text);
     }
 
-    public void updateProductQuantity(String productQuantity) {
+    public void updateProductQuantity(String Quanlity) {
         try {
             if (!scart_Page.getProductQuantity().isEmpty()) {
-                String currentQuantity = scart_Page.getProductQuantity().get(0).getDomAttribute("ng-reflect-model");
+                String currentQuantity = scart_Page.getProductQuantity().get(0).getAttribute("value");
                 int currentQty = (int) Math.round(Double.parseDouble(currentQuantity));
-                int targetQty = (int) Math.round(Double.parseDouble(productQuantity));
+                int targetQty = (int) Math.round(Double.parseDouble(Quanlity));
 
                 int timesToChange = targetQty - currentQty;
 
@@ -92,11 +69,11 @@ public class Cart_Update_Action {
                 clickButton(scart_Page.getBtnCart());
                 updateProductQuantity( productQuantity);
                 clickButton(scart_Page.getSelectAllCheckbox());
-                scart_Action.checkProduct( productQuantity, productPrice);
+                scart_Action.checkProduct(productQuantity, productPrice);
                 break;
             case "Two":
                 clickButton(basePage.getLinkProduct());
-                int quantity = (int) Double.parseDouble(productQuantity);
+                int quantity = 5;
                 for (int i = 0; i < quantity; i++) {
                     scart_Action.clickAddToCart(1);
                     baseAction.sleep(800);

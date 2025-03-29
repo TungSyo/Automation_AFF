@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 public class Cart_Page {
      public WebDriver driver;
 
-     @FindBy(xpath = "//input[contains(@ng-reflect-model,'1')]")
+     @FindBy(xpath = "//div[@class='cart-product']//tr//input[@class='ng-untouched ng-pristine']")
      private List<WebElement> productQuantity;
 
      @FindBy(xpath = "//tr[@class='order-total']/td")

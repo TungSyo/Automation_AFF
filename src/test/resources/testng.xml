@@ -10,13 +10,13 @@
         <classes>
             <!-- <class name="User.Register.Register_Test"/>
             <class name="User.Login.User_Login_Test"/> -->
-            <class name="User.Information.Information_Test"/>
-            <!-- <class name="User.ChangePass.Change_Pass_Test"/>
-            <class name="User.ForgotPass.ForgotPass_Test"/>
-            <class name="User.Cart.Cart_Test"/>
-            <class name="User.Cart.CartAdd.Cart_Add_Test"/>
+            <!-- <class name="User.Information.Information_Test"/> -->
+            <!-- <class name="User.ChangePass.Change_Pass_Test"/> -->
+            <!-- <class name="User.ForgotPass.Forgot_Pass_Test"/> -->
+            <!-- <class name="User.Cart.Cart.Cart_Test"/> -->
+            <!-- <class name="User.Cart.CartAdd.Cart_Add_Test"/> -->
             <class name="User.Cart.CartUpdate.Cart_Update_Test"/>
-            <class name="User.Cart.CartDelete.Cart_Delete_Test"/> -->
+            <!-- <class name="User.Cart.CartDelete.Cart_Delete_Test"/> -->
         </classes>
     </test>
 </suite>

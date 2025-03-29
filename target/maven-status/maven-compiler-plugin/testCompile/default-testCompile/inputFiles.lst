@@ -1,3 +1,4 @@
+D:\Zalo\DATN\Automation_AFF\src\test\java\User\Cart\Cart\Cart_Data.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Utils\ScreenShotUtil.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\Login\Admin_Login_Page.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\Product\ProductAction.java
@@ -18,6 +19,7 @@ D:\Zalo\DATN\Automation_AFF\src\test\java\User\Order\Order_Action.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Utils\Login_Google.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\AuthorManager\AuthorTestUp.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\Login\Admin_Login_Action.java
+D:\Zalo\DATN\Automation_AFF\src\test\java\User\Cart\CartUpdate\Cart_Update_Data.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\User\ChangePass\Change_Pass_Page.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\AuthorManager\AuthorTestAdd.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\User\Search\Search_Page.java
@@ -53,6 +55,8 @@ D:\Zalo\DATN\Automation_AFF\src\test\java\User\Register\Register_Test.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\User\Cart\CartDelete\Cart_Delete_Action.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\User\Information\Information_Action.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\User\Search\Search_Action.java
+D:\Zalo\DATN\Automation_AFF\src\test\java\User\Cart\CartDelete\Cart_Delete_Data.java
+D:\Zalo\DATN\Automation_AFF\src\test\java\User\Cart\CartAdd\Cart_Add_Data.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Base\Base_Test.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\Admin\Tree\TreeTestSearch.java
 D:\Zalo\DATN\Automation_AFF\src\test\java\User\Cart\CartDelete\Cart_Delete_Test.java

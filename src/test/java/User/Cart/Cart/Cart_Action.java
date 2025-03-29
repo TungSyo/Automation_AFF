@@ -1,29 +1,15 @@
 package User.Cart.Cart;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import Base.Base_Action;
-import Base.Base_Page;
-import Base.Base_Test;
-import Report.Extend_Report;
+import Base.*;
 import User.Search.Search_Page;
 
 @SuppressWarnings("unused")
@@ -32,14 +18,12 @@ public class Cart_Action {
 	private Base_Page basePage;
 	private Base_Action baseAction;
 	private Cart_Page scart_Page;
-	private Search_Page search_Page;
 
 	public Cart_Action(WebDriver driver) {
 		this.driver = driver;
 		this.basePage = new Base_Page(driver);
 		this.scart_Page = new Cart_Page(driver);
 		this.baseAction = new Base_Action(driver);
-		this.search_Page = new Search_Page(driver);
 	}
 
 	public void clickButton(WebElement element) {
