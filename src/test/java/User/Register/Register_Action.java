@@ -1,40 +1,17 @@
 package User.Register;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Properties;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import User.Register.Register_Page;
-import Base.Base_Action;
-import Base.Base_Page;
-import Base.Base_Test;
+import Base.*;
 import User.Login.User_Login_Page;
-import Utils.ConfigUtil;
 import Utils.Email_Reader;
-import Utils.Login_Google;
-import Utils.OCRUtils;
-import Utils.Otp_Extractor;
-import Utils.ScreenShotUtil;
 
 @SuppressWarnings("unused")
 public class Register_Action {
@@ -44,7 +21,6 @@ public class Register_Action {
     private Base_Test baseTest;
     private Base_Action baseAction;
     private User_Login_Page loginPage;
-    private Login_Google loginGoogle;
     public boolean shouldLoginGoogle = false;
 
     public Register_Action(WebDriver driver) {
@@ -52,7 +28,6 @@ public class Register_Action {
         this.registerPage = new Register_Page(driver);
         this.basePage = new Base_Page(driver);
         this.baseTest = new Base_Test();
-        this.loginGoogle = new Login_Google(driver);
         this.loginPage = new User_Login_Page(driver);
     }
 
