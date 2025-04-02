@@ -11,19 +11,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Base.*;
 import User.Search.Search_Page;
-
+import User.Information.Information_Page;
+import User.WithDraw.WithDraw_Action;
 @SuppressWarnings("unused")
 public class Cart_Action {
 	private WebDriver driver;
 	private Base_Page basePage;
 	private Base_Action baseAction;
 	private Cart_Page scart_Page;
+	private Information_Page inforPage;
+	private WithDraw_Action withdrawAction;
 
 	public Cart_Action(WebDriver driver) {
 		this.driver = driver;
 		this.basePage = new Base_Page(driver);
 		this.scart_Page = new Cart_Page(driver);
 		this.baseAction = new Base_Action(driver);
+		this.inforPage = new Information_Page(driver);
+		this.withdrawAction = new WithDraw_Action(driver);
 	}
 
 	public void clickButton(WebElement element) {
@@ -79,44 +84,48 @@ public class Cart_Action {
 		return actualPrice == totalWebPrice && actualPrice == excelPrice;
 	}
 	
+	public void addProductsAndGoToCart() {
+		clickButton(basePage.getLinkProduct());
+		addProductToCart(1, 2, 3);
+		clickButton(scart_Page.getBtnCart());
+	}
 
+
+	private void caseOne() {
+		addProductsAndGoToCart();
+		clickButton(scart_Page.getSelectCheckboxDongy());
+		clickButton(scart_Page.getBtnToThanhToan());
+
+	}
+
+	private void caseTwo() {
+		addProductsAndGoToCart();
+		clickButton(scart_Page.getSelectAllCheckbox());
+		clickButton(scart_Page.getBtnToThanhToan());
+
+	}
+
+	private void caseThree() {
+		addProductsAndGoToCart();
+		clickButton(scart_Page.getSelectAllCheckbox());
+		clickButton(scart_Page.getSelectCheckboxDongy());
+		clickButton(scart_Page.getBtnToThanhToan());
+	}
+
+	
 	public void SCartToOrder(String typecase) {
 		switch (typecase) {
 			case "One":
-				clickButton(basePage.getLinkProduct());
-				addProductToCart(1, 2, 3);
-				clickButton(scart_Page.getBtnCart());
-				clickButton(scart_Page.getSelectCheckboxDongy());
-				clickButton(scart_Page.getBtnToThanhToan());
+				caseOne();
 				break;
 			case "Two":
-				clickButton(basePage.getLinkProduct());
-				addProductToCart(1, 2, 3);
-				clickButton(scart_Page.getBtnCart());
-				clickButton(scart_Page.getSelectAllCheckbox());
-				clickButton(scart_Page.getBtnToThanhToan());
+				caseTwo();
 				break;
 			case "Three":
-				clickButton(basePage.getLinkProduct());
-				addProductToCart(1, 2, 3);
-				clickButton(scart_Page.getBtnCart());
-				clickButton(scart_Page.getSelectAllCheckbox());
-				clickButton(scart_Page.getSelectCheckboxDongy());
-				clickButton(scart_Page.getBtnToThanhToan());
+				caseThree();
 				break;
 			default:
 				System.out.println("Invalid typecase: " + typecase);
-		}
-	}
-
-	public boolean verifyNotion(String expectedText) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		try {
-			List<WebElement> allElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
-					By.xpath("//*[normalize-space(text())='" + expectedText + "']")));
-			return !allElements.isEmpty();
-		} catch (Exception e) {
-			return false;
 		}
 	}
 }

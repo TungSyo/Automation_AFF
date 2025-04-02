@@ -15,8 +15,9 @@
             <!-- <class name="User.ForgotPass.Forgot_Pass_Test"/> -->
             <!-- <class name="User.Cart.Cart.Cart_Test"/> -->
             <!-- <class name="User.Cart.CartAdd.Cart_Add_Test"/> -->
-            <class name="User.Cart.CartUpdate.Cart_Update_Test"/>
+            <!-- <class name="User.Cart.CartUpdate.Cart_Update_Test"/> -->
             <!-- <class name="User.Cart.CartDelete.Cart_Delete_Test"/> -->
+            <class name="User.Order.Order_Test"/>
         </classes>
     </test>
 </suite>

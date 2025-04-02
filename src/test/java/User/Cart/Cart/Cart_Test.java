@@ -84,7 +84,7 @@ public class Cart_Test extends Base_Test {
                     break;
 
                 case "verifynotion":
-                    baseAction.handleVerification(cartAction.verifyNotion(data.getResult()),
+                    baseAction.handleVerification(baseAction.verifyNotion(data.getResult()),
                             "thông báo", data.getResult());
                     break;
 
