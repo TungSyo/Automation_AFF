@@ -13,6 +13,7 @@ public class Search_Action {
 	public Search_Action(WebDriver driver) {
 		this.driver = driver;
 		this.searchPage = new Search_Page(driver);
+		this.baseAction = new Base_Action(driver);
 	}
 
 	public void enterText(WebElement element, String text) {

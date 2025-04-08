@@ -81,10 +81,11 @@ public class Base_Action {
                     element.sendKeys(Keys.BACK_SPACE);
                     sleep(300);
 
-                    for (char c : text.toCharArray()) {
-                         element.sendKeys(String.valueOf(c));
-                         sleep(100 + (int) (Math.random() * 200));
-                    }
+                    // for (char c : text.toCharArray()) {
+                    //      element.sendKeys(String.valueOf(c));
+                    //      sleep(100 + (int) (Math.random() * 200));
+                    // }
+                    element.sendKeys(text);
                     sleep(500);
                }
           } catch (Exception e) {
